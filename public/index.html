@@ -33,7 +33,7 @@
         console.log(database);
         var list = document.getElementById('list');
 
-        for (var i = 1; i < database.todo.length; i++) { 
+        for (var i = 0; i < database.todo.length; i++) { 
           var item = document.createElement('li');
           item.innerHTML = database.todo[i].item;
           list.appendChild(item);
