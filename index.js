@@ -18,8 +18,8 @@ express()
 
     try {
       const client = await pool.connect();
-
-      const params = 0;
+      const todo   = await client.query('SELECT * FROM Todo ORDER BY id');
+      const params = { 'todo'  : (todo)  ?  todo.rows  : null };
 
       res.send(params);
       client.release();
