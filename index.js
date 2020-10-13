@@ -10,8 +10,8 @@ const { query } = require('express');
 const PORT      = process.env.PORT || 5000;
 
 express()
-  .use(express.static(path.join(_dirname, 'public')))
-  .set('views',path.join(_dirname, 'views'))
+  .use(express.static(path.join(__dirname, 'public')))
+  .set('views',path.join(__dirname, 'views'))
 
   .get('/todo', async(req,res) => {
     console.log("received request to access todo");
@@ -29,5 +29,5 @@ express()
     }
   })
 
-  
+
   .listen(PORT, () => console.log('Listening on ${PORT}'))
