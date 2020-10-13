@@ -26,6 +26,10 @@ td {
   color: gray;
 }
 
+input { 
+  margin: 0px 4px;
+}
+
 .hidden { 
   display: none;
 }
