@@ -13,12 +13,13 @@ express()
   .use(express.static(path.join(__dirname, 'public')))
   .set('views',path.join(__dirname, 'views'))
 
+  // retrieve data from the database
   .get('/todo', async(req,res) => {
     console.log("received request to access todo");
 
     try {
       const client = await pool.connect();
-      const todo   = await client.query('SELECT * FROM Todo ORDER BY id');
+      const todo   = await client.query('SELECT * FROM Todo ORDER BY priority');
       const params = { 'todo'  : (todo)  ?  todo.rows  : null };
 
       res.send(params);
@@ -29,5 +30,19 @@ express()
     }
   })
 
+  .get('/update', async (req, res) => {
+    try { 
+      console.log("request to add an item to the list");
+
+      const client = await pool.connect();
+      const todo   = await client.query("INSERT INTO Todo (item, priority) VALUES ('" + req.query.item + "', " + req.query.priority + ")");
+
+      res.redirect('https://nates-notes.herokuapp.com');
+      client.release();
+    } catch (err) { 
+      console.error(err);
+      res.send("Error: ", err);
+    }
+  })
 
   .listen(PORT, () => console.log('Listening on ${PORT}'))
