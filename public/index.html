@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/todo.css">
   </head>
 
-<body>
+<body onload="loadList()">
 
 <h1>To do</h1>
 
@@ -18,11 +18,25 @@
 </ol>
 
 <form id="todo" method="GET" action="/update">
-
+  <button onclick="return false;">Create a new todo item</button>
 </form>
 
 
+<script>
+  function loadList() { 
+    var xmlHttpRequest = new XMLHttpRequest();
+    xmlHttpRequest.onreadystatechange = function() { 
+      if (xmlHttpRequest.readyState == XMLHttpRequest.DONE && xmlHttpRequest.status == 200 ) {
+        console.log('getting database request');
 
+        
+
+      }
+    }
+    xmlHttpRequest.open('GET', 'https://nates-notes.herokuapp.com/todo', true);
+    xmlHttpRequest.send();
+  };
+</script>
 
 
 </body>
