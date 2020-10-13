@@ -4,3 +4,23 @@ body {
   background-blend-mode: screen;
   text-align: center;
 }
+
+ol { 
+  list-style-position: inside;
+}
+
+table { 
+  margin: auto;
+}
+
+input[type="number"] {
+  text-align: center;
+}
+
+td { 
+  padding: 4px;
+}
+
+.hint { 
+  color: gray;
+}
