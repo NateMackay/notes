@@ -19,7 +19,7 @@
 
 <form id="todo" method="GET" action="/update">
   <button id="addItem" onclick="return false;">Create a new todo item</button>
-  <table>
+  <table class="hidden" id="addForm">
     <tr><td>To do item</td><td><input type="text" name="item"></td></tr>
     <tr><td>Item priority</td><td class="hint"><input type="number" name="priority" min="1" max="3">1 = high, 3 = low</td></tr>
     <tr><td colspan="2"><input type="submit" value="Update list" ></td></tr>
@@ -48,6 +48,11 @@
     }
     xmlHttpRequest.open('GET', 'https://nates-notes.herokuapp.com/todo', true);
     xmlHttpRequest.send();
+  };
+
+  function addItem() { 
+    document.getElementById('addForm')style.display = "initial";
+    document.getElementById('addItem')style.display = "none";
   };
 </script>
 
