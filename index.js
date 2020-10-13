@@ -46,3 +46,9 @@ express()
   })
 
   .listen(PORT, () => console.log('Listening on ${PORT}'))
+
+  function addItem() { 
+    document.getElementById('addForm').style.display = "initial";
+    document.getElementById('addItem').style.display = "none";
+    return false;
+  };
