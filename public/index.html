@@ -69,7 +69,7 @@
 
   function del() { 
     document.getElementById('del').style.display = "initial";
-    var list    = document.getElementById('list');
+    var list    = document.getElementsByClassName('li');
     var delList = document.getElementById('del');
     for (var i = 0; i < list.childElementCount; i++) {
       var op = document.createElement('input');
@@ -79,8 +79,9 @@
       op.setAttribute("value", list.childNodes[i].innerHTML);
       list.appendChild(op);
     }
-    var submit
+    // var submit = 
     document.getElementById('list').style.display = "none";
+    document.getElementById('deleteItem').style.display = "none";
   }
 </script>
 
