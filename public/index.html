@@ -29,7 +29,15 @@
       if (xmlHttpRequest.readyState == XMLHttpRequest.DONE && xmlHttpRequest.status == 200 ) {
         console.log('getting database request');
 
-        
+        var database = JSON.parse(xmlHttpRequest.responseText);
+        console.log(database);
+        var list = document.getElementById('list');
+
+        for (var i = 1; i < database.todo.length; i++) { 
+          var item = document.createElement('li');
+          item.innerHTML = database.todo[i].item;
+          list.appendChild(item);
+        }
 
       }
     }
