@@ -13,6 +13,10 @@ ol {
   margin-right: auto;
 }
 
+button { 
+  margin: 6px;
+}
+
 table { 
   margin: auto;
 }

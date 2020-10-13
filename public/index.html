@@ -27,6 +27,11 @@
   </table>
 </form>
 
+<button id="deleteItem" onclick="del()">Delete an item</button>
+<form class="hidden" id="del" method="GET" action="/delete">
+  <input type="submit" value="Delete Item" >
+  <input type="button" onclick="cancel()" value="Cancel">
+</form>
 
 <script>
   function loadList() { 
@@ -58,7 +63,24 @@
 
   function cancel() { 
     document.getElementById('addForm').style.display = "none";
+    document.getElementById('del').style.display = "none";
     document.getElementById('addItem').style.display = "initial";
+  }
+
+  function del() { 
+    document.getElementById('del').style.display = "initial";
+    var list    = document.getElementById('list');
+    var delList = document.getElementById('del');
+    for (var i = 0; i < list.childElementCount; i++) {
+      var op = document.createElement('input');
+      op.innerHTML = list.childNodes[i].innerHTML;
+      op.setAttribute("type", "radio");
+      op.setAttribute("name", "item");
+      op.setAttribute("value", list.childNodes[i].innerHTML);
+      list.appendChild(op);
+    }
+    var submit
+    document.getElementById('list').style.display = "none";
   }
 </script>
 
