@@ -45,6 +45,21 @@ express()
     }
   })
 
+  .get('/delele', async (req, res) => {
+    try { 
+      console.log("request to delete an item");
+
+      const client = await pool.connect();
+      const todo   = await client.query("DELETE FROM Todo WHERE item='" + req.query.item + "')");
+
+      res.redirect('https://nates-notes.herokuapp.com');
+      client.release();
+    } catch (err) { 
+      console.error(err);
+      res.send("Error: ", err);
+    }
+  })
+
   .listen(PORT, () => console.log('Listening on ${PORT}'))
 
   function addItem() { 

@@ -77,21 +77,21 @@
   function del() { 
     document.getElementById('del').style.display = "initial";
     var list    = document.getElementById('list');
-    var delList = document.getElementById('delList');
+    var dList = document.getElementById('delList');
 
-    if (delList.childElementCount > 0) {
+    if (dList.childElementCount > 0) {
       for (var i = 0; i < list.childElementCount; i++) {
         var op = document.createElement('input');
         var label = document.createElement('label');
         op.setAttribute("type", "radio");
         op.setAttribute("name", "item");
         op.setAttribute("id", list.childNodes[i].innerText);
-        delList.appendChild(op);
+        dList.appendChild(op);
         op.setAttribute("value", list.childNodes[i].innerText);
-        delList.appendChild(op);
+        dList.appendChild(op);
         label.innerHTML = list.childNodes[i+1].innerText + "<br>";
         label.setAttribute("for", list.childNodes[i].innerText);
-        delList.appendChild(label);
+        dList.appendChild(label);
       }
     }
     document.getElementById('list').style.display = "none";
