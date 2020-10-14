@@ -46,7 +46,7 @@
         console.log(database);
         var list = document.getElementById('list');
 
-        for (var i = 0; i < database.todo.length + 1; i++) { 
+        for (var i = 0; i < database.todo.length; i++) { 
           var item = document.createElement('li');
           if (i < database.todo.length - 1) {
             if (database.todo[i].priority < database.todo[i + 1].priority) { 
