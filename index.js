@@ -50,7 +50,7 @@ express()
       console.log("request to delete an item");
 
       const client = await pool.connect();
-      const todo   = await client.query("DELETE FROM Todo WHERE item='" + req.query.item + "')");
+      const todo   = await client.query("DELETE FROM Todo WHERE item='" + req.query.item + "'");
 
       res.redirect('https://nates-notes.herokuapp.com');
       client.release();
