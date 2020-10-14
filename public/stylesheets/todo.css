@@ -47,4 +47,5 @@ input {
   font-variant: small-caps;
   text-align: center;
   font-weight: bolder;
+  list-style-type: none;
 }

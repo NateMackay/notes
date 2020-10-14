@@ -37,7 +37,14 @@
 
 <br>
 <button id="change" onclick="chang()">Change item priority</button>
+<form class="hidden" id="edit" method="GET" action="edit">
+  <ol id="editList">
 
+  </ol>
+  <input type="button" value="Select Item" onclick="change(this)">
+  <input type="hidden" type="submit" value="Select Item" >
+  <input type="button" onclick="cancel()" value="Cancel">
+</form>
 <script>
   function loadList() { 
     var xmlHttpRequest = new XMLHttpRequest();
@@ -57,9 +64,10 @@
         list.appendChild(title);
         for (var i = 0; i < database.todo.length; i++) { 
           var item = document.createElement('li');
+          item.setAttribute("value", i + 1);
           if (i < database.todo.length - 1) {
             if (database.todo[i].priority < database.todo[i + 1].priority) { 
-            item.innerHTML = database.todo[i].item + "<br><br><div class='caps'>" + pri[j++] + "</div>";
+            item.innerHTML = database.todo[i].item + "<br><br><li class='caps'>" + pri[j++] + "</li>";
             } else {
             item.innerHTML = database.todo[i].item;
             }
@@ -90,7 +98,7 @@
 
   function del() { 
     document.getElementById('del').style.display = "initial";
-    var list    = document.getElementById('list');
+    var list  = document.getElementById('list');
     var dList = document.getElementById('delList');
 
     if (dList.childElementCount < 1) {
@@ -99,6 +107,8 @@
         var label = document.createElement('label');
         op.setAttribute("type", "radio");
         op.setAttribute("name", "item");
+
+        
         op.setAttribute("id", list.childNodes[i+1].innerText);
         dList.appendChild(op);
         op.setAttribute("value", list.childNodes[i+1].innerText);
