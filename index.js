@@ -45,7 +45,7 @@ express()
     }
   })
 
-  .get('/delele', async (req, res) => {
+  .get('/delete', async (req, res) => {
     try { 
       console.log("request to delete an item");
 
