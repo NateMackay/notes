@@ -67,14 +67,25 @@
           item.setAttribute("value", i + 1);
           if (i < database.todo.length - 1) {
             if (database.todo[i].priority < database.todo[i + 1].priority) { 
-            item.innerHTML = database.todo[i].item + "<br><br><li class='caps'>" + pri[j++] + "</li>";
+            item.innerHTML = database.todo[i].item + "<br><br>";
+            list.appendChild(item);
+
+            var title = document.createElement('li');
+            title.innerHTML = pri[j++];
+            title.setAttribute("class", "caps");
+            list.appendChild(title);
+            
+            // "<li class='caps'>" + pri[j++] + "</li>";
+
             } else {
             item.innerHTML = database.todo[i].item;
+            list.appendChild(item);
             }
           } else {
             item.innerHTML = database.todo[i].item;
+            list.appendChild(item);
           }
-          list.appendChild(item);
+          // list.appendChild(item);
         }
 
       }
