@@ -48,7 +48,7 @@
 
         for (var i = 0; i < database.todo.length; i++) { 
           var item = document.createElement('li');
-          if ((i > database.todo.length) && (database.todo[i].priority < database.todo[i + 1].priority)) { 
+          if ((i < database.todo.length) && (database.todo[i].priority < database.todo[i + 1].priority)) { 
             item.innerHTML = database.todo[i].item + "<br><br>"
           } else {
             item.innerHTML = database.todo[i].item;
