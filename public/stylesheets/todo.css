@@ -12,6 +12,7 @@ ol {
   width: 300px;
   margin-left: auto;
   margin-right: auto;
+  padding-left: 0px;
 }
 
 button { 
@@ -43,6 +44,7 @@ input {
 }
 
 .caps { 
-  font: small-caps;
+  font-variant: small-caps;
   text-align: center;
+  font-weight: bolder;
 }

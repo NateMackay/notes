@@ -27,7 +27,7 @@
   </table>
 </form>
 
-<button id="deleteItem" onclick="del()">Delete an item</button>
+<button id="deleteItem" onclick="del()">Delete an item</button><br>
 <form class="hidden" id="del" method="GET" action="/delete">
   <ol id="delList">
   </ol>
@@ -50,15 +50,15 @@
         console.log(database);
         var list = document.getElementById('list');
 
-        var title = document.createElement('span');
-        title.innerHTML = pri[j];
+        var title = document.createElement('div');
+        title.innerHTML = pri[j++];
         title.setAttribute("class", "caps");
         list.appendChild(title);
         for (var i = 0; i < database.todo.length; i++) { 
           var item = document.createElement('li');
           if (i < database.todo.length - 1) {
             if (database.todo[i].priority < database.todo[i + 1].priority) { 
-            item.innerHTML = database.todo[i].item + "<br><br>" + pri[j++];
+            item.innerHTML = database.todo[i].item + "<br><br><div class='caps'>" + pri[j++] + "</div>";
             } else {
             item.innerHTML = database.todo[i].item;
             }
@@ -93,7 +93,7 @@
     var dList = document.getElementById('delList');
 
     if (dList.childElementCount < 1) {
-      for (var i = 0; i < list.childElementCount; i++) {
+      for (var i = 1; i < list.childElementCount; i++) {
         var op = document.createElement('input');
         var label = document.createElement('label');
         op.setAttribute("type", "radio");
