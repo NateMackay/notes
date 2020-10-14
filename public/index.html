@@ -68,6 +68,7 @@
           if (i < database.todo.length - 1) {
             if (database.todo[i].priority < database.todo[i + 1].priority) { 
             item.innerHTML = database.todo[i].item + "<br><br>";
+            item.setAttribute("id", database.todo[i].item);
             list.appendChild(item);
 
             var title = document.createElement('li');
@@ -118,8 +119,6 @@
         var label = document.createElement('label');
         op.setAttribute("type", "radio");
         op.setAttribute("name", "item");
-
-        
         op.setAttribute("id", list.childNodes[i+1].innerText);
         dList.appendChild(op);
         op.setAttribute("value", list.childNodes[i+1].innerText);
