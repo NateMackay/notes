@@ -29,7 +29,7 @@
 
 <button id="deleteItem" onclick="del()">Delete an item</button>
 <form class="hidden" id="del" method="GET" action="/delete">
-  <ol id="">
+  <ol id="delList">
   </ol>
   <input type="submit" value="Delete Item" >
   <input type="button" onclick="cancel()" value="Cancel">
@@ -74,9 +74,9 @@
   }
 
   function del() { 
+    document.getElementById('del').style.display = "initial";
     var list    = document.getElementById('list');
-    var delList = document.getElementById('del');
-    delList.style.display = "initial";
+    var delList = document.getElementById('delList');
     for (var i = 0; i < list.childElementCount; i++) {
       var op = document.createElement('input');
       var label = document.createElement('label');
