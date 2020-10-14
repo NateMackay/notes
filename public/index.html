@@ -29,6 +29,8 @@
 
 <button id="deleteItem" onclick="del()">Delete an item</button>
 <form class="hidden" id="del" method="GET" action="/delete">
+  <ol id="">
+  </ol>
   <input type="submit" value="Delete Item" >
   <input type="button" onclick="cancel()" value="Cancel">
 </form>
@@ -68,17 +70,20 @@
     document.getElementById('addForm').style.display = "none";
     document.getElementById('del').style.display = "none";
     document.getElementById('addItem').style.display = "initial";
+    document.getElementById('list').style.display = "initial";
   }
 
   function del() { 
-    document.getElementById('del').style.display = "initial";
     var list    = document.getElementById('list');
     var delList = document.getElementById('del');
+    delList.style.display = "initial";
     for (var i = 0; i < list.childElementCount; i++) {
       var op = document.createElement('input');
       var label = document.createElement('label');
       op.setAttribute("type", "radio");
       op.setAttribute("name", "item");
+      op.setAttribute("id", list.childNodes[i].innerText);
+      delList.appendChild(op);
       op.setAttribute("value", list.childNodes[i].innerText);
       delList.appendChild(op);
       label.innerHTML = list.childNodes[i+1].innerText + "<br>";
