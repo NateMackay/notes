@@ -73,10 +73,10 @@
     var delList = document.getElementById('del');
     for (var i = 0; i < list.childElementCount; i++) {
       var op = document.createElement('input');
-      op.innerHTML = list.childNodes[i].innerText;
       op.setAttribute("type", "radio");
       op.setAttribute("name", "item");
       op.setAttribute("value", list.childNodes[i].innerHTML);
+      op.innerHTML = list.childNodes[i+1].innerText;
       delList.appendChild(op);
     }
     // var submit = 
