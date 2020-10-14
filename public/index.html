@@ -79,7 +79,7 @@
     var list    = document.getElementById('list');
     var dList = document.getElementById('delList');
 
-    if (dList.childElementCount > 0) {
+    if (dList.childElementCount < 1) {
       for (var i = 0; i < list.childElementCount; i++) {
         var op = document.createElement('input');
         var label = document.createElement('label');
