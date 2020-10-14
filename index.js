@@ -19,7 +19,7 @@ express()
 
     try {
       const client = await pool.connect();
-      const todo   = await client.query('SELECT * FROM Todo ORDER BY priority');
+      const todo   = await client.query('SELECT * FROM Todo ORDER BY priority, id');
       const params = { 'todo'  : (todo)  ?  todo.rows  : null };
 
       res.send(params);

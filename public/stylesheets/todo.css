@@ -1,6 +1,7 @@
 
 body {
-  background-color: rgb(247 255 133);
+  /* background-color: rgb(247 255 133); */
+  background-image: url('https://st2.depositphotos.com/4681751/6993/v/450/depositphotos_69937611-stock-illustration-yellow-lined-paper.jpg');
   background-blend-mode: screen;
   text-align: center;
 }
