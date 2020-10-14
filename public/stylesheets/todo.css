@@ -41,3 +41,8 @@ input {
 .hidden { 
   display: none;
 }
+
+.caps { 
+  font: small-caps;
+  text-align: center;
+}

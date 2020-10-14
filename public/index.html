@@ -35,22 +35,30 @@
   <input type="button" onclick="cancel()" value="Cancel">
 </form>
 
+<button id="change" onclick="chang()">Change item priority</button>
+
 <script>
   function loadList() { 
     var xmlHttpRequest = new XMLHttpRequest();
     xmlHttpRequest.onreadystatechange = function() { 
       if (xmlHttpRequest.readyState == XMLHttpRequest.DONE && xmlHttpRequest.status == 200 ) {
         console.log('getting database request');
+        var pri = ["high priority", "medium", "low"];
+        var j = 0;
 
         var database = JSON.parse(xmlHttpRequest.responseText);
         console.log(database);
         var list = document.getElementById('list');
 
+        var title = document.createElement('span');
+        title.innerHTML = pri[j];
+        title.setAttribute("class", caps);
+        list.appendChild(title);
         for (var i = 0; i < database.todo.length; i++) { 
           var item = document.createElement('li');
           if (i < database.todo.length - 1) {
             if (database.todo[i].priority < database.todo[i + 1].priority) { 
-            item.innerHTML = database.todo[i].item + "<br><br>"
+            item.innerHTML = database.todo[i].item + "<br><br>" + pri[j++];
             } else {
             item.innerHTML = database.todo[i].item;
             }
