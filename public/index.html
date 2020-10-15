@@ -120,12 +120,14 @@
         op.setAttribute("type", "radio");
         op.setAttribute("name", "item");
         op.setAttribute("id", list.childNodes[i+1].id);
-        dList.appendChild(op);
+        // dList.appendChild(op);
         op.setAttribute("value", list.childNodes[i+1].id);
-        dList.appendChild(op);
         label.innerHTML = list.childNodes[i+1].id + "<br>";
         label.setAttribute("for", list.childNodes[i+1].id);
-        dList.appendChild(label);
+        if (list.childNodes[i+1].id != undefined) {
+          dList.appendChild(op);
+          dList.appendChild(label);
+        }
       }
     }
     document.getElementById('list').style.display = "none";
