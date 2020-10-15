@@ -124,7 +124,7 @@
         op.setAttribute("value", list.childNodes[i+1].id);
         label.innerHTML = list.childNodes[i+1].id + "<br>";
         label.setAttribute("for", list.childNodes[i+1].id);
-        if (list.childNodes[i+1].id != undefined) {
+        if (list.childNodes[i+1].id != "") {
           dList.appendChild(op);
           dList.appendChild(label);
         }
