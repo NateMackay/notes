@@ -106,10 +106,12 @@
   };
 
   function cancel() { 
-    document.getElementById('addForm').style.display = "none";
-    document.getElementById('del').style.display = "none";
-    document.getElementById('addItem').style.display = "initial";
     document.getElementById('list').style.display = "revert";
+
+    document.getElementById('addForm').style.display = "none";
+    document.getElementById('addItem').style.display = "initial";
+
+    document.getElementById('del').style.display = "none";
     document.getElementById('deleteItem').style.display = "revert";
 
     document.getElementById('change').style.display = "revert";
@@ -129,11 +131,11 @@
         var label = document.createElement('label');
         op.setAttribute("type", "radio");
         op.setAttribute("name", "item");
-        op.setAttribute("id", list.childNodes[i+1].innerText);
+        op.setAttribute("id", form + list.childNodes[i+1].innerText);
         // dList.appendChild(op);
         op.setAttribute("value", list.childNodes[i+1].innerText);
         label.innerHTML = list.childNodes[i+1].innerText + "<br>";
-        label.setAttribute("for", list.childNodes[i+1].innerText);
+        label.setAttribute("for", form + list.childNodes[i+1].innerText);
         if (list.childNodes[i+1].className == "") {
           dList.appendChild(op);
           dList.appendChild(label);
