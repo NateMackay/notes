@@ -27,7 +27,7 @@
   </table>
 </form>
 
-<button id="deleteItem" onclick="del()">Delete an item</button>
+<button id="deleteItem" onclick="del('deleteItem', 'del', 'delList')">Delete an item</button>
 <form class="hidden" id="del" method="GET" action="/delete">
   <ol id="delList">
   </ol>
@@ -113,10 +113,10 @@
     document.getElementById('deleteItem').style.display = "revert";
   }
 
-  function del() { 
-    document.getElementById('del').style.display = "initial";
+  function del(button, form, list) { 
+    document.getElementById(form).style.display = "initial";
     var list  = document.getElementById('list');
-    var dList = document.getElementById('delList');
+    var dList = document.getElementById(list);
 
     if (dList.childElementCount < 1) {
       for (var i = 1; i < list.childElementCount; i++) {
@@ -136,7 +136,7 @@
       }
     }
     document.getElementById('list').style.display = "none";
-    document.getElementById('deleteItem').style.display = "none";
+    document.getElementById(button).style.display = "none";
   }
 </script>
 
