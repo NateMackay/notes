@@ -124,12 +124,12 @@
         var label = document.createElement('label');
         op.setAttribute("type", "radio");
         op.setAttribute("name", "item");
-        op.setAttribute("id", list.childNodes[i+1].id);
+        op.setAttribute("id", list.childNodes[i+1].innerText);
         // dList.appendChild(op);
-        op.setAttribute("value", list.childNodes[i+1].id);
-        label.innerHTML = list.childNodes[i+1].id + "<br>";
-        label.setAttribute("for", list.childNodes[i+1].id);
-        if (list.childNodes[i+1].id != "") {
+        op.setAttribute("value", list.childNodes[i+1].innerText);
+        label.innerHTML = list.childNodes[i+1].innerText + "<br>";
+        label.setAttribute("for", list.childNodes[i+1].innerText);
+        if (list.childNodes[i+1].value != "") {
           dList.appendChild(op);
           dList.appendChild(label);
         }
