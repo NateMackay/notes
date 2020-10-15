@@ -65,11 +65,16 @@
         for (var i = 0; i < database.todo.length; i++) { 
           var item = document.createElement('li');
           item.setAttribute("value", i + 1);
-          item.setAttribute("id", database.todo[i].item);
+          // item.setAttribute("id", database.todo[i].item);
           if (i < database.todo.length - 1) {
             if (database.todo[i].priority < database.todo[i + 1].priority) { 
-            item.innerHTML = database.todo[i].item + "<br><br>";
+            // item.innerHTML = database.todo[i].item + "<br><br>";
+            item.innerHTML = database.todo[i].item;
             list.appendChild(item);
+            var br = document.createElement('br');
+            list.appendChild(br);
+            var br = document.createElement('br');
+            list.appendChild(br);
 
             var title = document.createElement('li');
             title.innerHTML = pri[j++];
