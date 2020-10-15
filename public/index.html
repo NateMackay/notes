@@ -36,12 +36,12 @@
 </form>
 
 <br>
-<button id="change" onclick="chang()">Change item priority</button>
+<button id="change" onclick="del('change', 'edit', 'editList')">Change item priority</button>
 <form class="hidden" id="edit" method="GET" action="edit">
   <ol id="editList">
 
   </ol>
-  <input type="button" value="Select Item" onclick="change(this)">
+  <input type="button" value="Select Item" onclick="change(this); return false;">
   <input type="hidden" type="submit" value="Select Item" >
   <input type="button" onclick="cancel()" value="Cancel">
 </form>
@@ -137,7 +137,11 @@
     }
     document.getElementById('list').style.display = "none";
     document.getElementById(button).style.display = "none";
-  }
+  };
+
+  function change(item) { 
+
+  };
 </script>
 
 
