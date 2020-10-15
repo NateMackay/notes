@@ -113,10 +113,10 @@
     document.getElementById('deleteItem').style.display = "revert";
   }
 
-  function del(button, form, list) { 
+  function del(button, form, newlist) { 
     document.getElementById(form).style.display = "initial";
     var list  = document.getElementById('list');
-    var dList = document.getElementById(list);
+    var dList = document.getElementById(newlist);
 
     if (dList.childElementCount < 1) {
       for (var i = 1; i < list.childElementCount; i++) {
