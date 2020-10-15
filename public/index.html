@@ -73,8 +73,6 @@
             list.appendChild(item);
             var br = document.createElement('br');
             list.appendChild(br);
-            var br = document.createElement('br');
-            list.appendChild(br);
 
             var title = document.createElement('li');
             title.innerHTML = pri[j++];
@@ -129,7 +127,7 @@
         op.setAttribute("value", list.childNodes[i+1].innerText);
         label.innerHTML = list.childNodes[i+1].innerText + "<br>";
         label.setAttribute("for", list.childNodes[i+1].innerText);
-        if (list.childNodes[i+1].value != "") {
+        if (list.childNodes[i+1].value != undefined || list.childNodes[i+1].value != 0) {
           dList.appendChild(op);
           dList.appendChild(label);
         }
