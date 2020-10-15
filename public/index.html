@@ -72,13 +72,13 @@
             item.innerHTML = database.todo[i].item;
             list.appendChild(item);
             var br = document.createElement('br');
-            br.setAttribute("value", "0");
+            br.setAttribute("class", "caps");
             list.appendChild(br);
 
             var title = document.createElement('li');
             title.innerHTML = pri[j++];
             title.setAttribute("class", "caps");
-            title.setAttribute("value", "0");
+            // title.setAttribute("value", "0");
             list.appendChild(title);
             
             // "<li class='caps'>" + pri[j++] + "</li>";
@@ -129,7 +129,7 @@
         op.setAttribute("value", list.childNodes[i+1].innerText);
         label.innerHTML = list.childNodes[i+1].innerText + "<br>";
         label.setAttribute("for", list.childNodes[i+1].innerText);
-        if (list.childNodes[i+1].value != undefined) {
+        if (list.childNodes[i+1].class == undefined) {
           dList.appendChild(op);
           dList.appendChild(label);
         }
