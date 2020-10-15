@@ -129,7 +129,7 @@
         op.setAttribute("value", list.childNodes[i+1].innerText);
         label.innerHTML = list.childNodes[i+1].innerText + "<br>";
         label.setAttribute("for", list.childNodes[i+1].innerText);
-        if (list.childNodes[i+1].class == undefined) {
+        if (list.childNodes[i+1].className == "") {
           dList.appendChild(op);
           dList.appendChild(label);
         }
