@@ -150,7 +150,8 @@
     for (i = 0; i < ele.length; i++) { 
       if ( ele[i].checked ) {
         group += "<br><div>Current priority is " + ele[i].value + ".";
-        ele[i].innerHTML += group;
+        ele[i].setAttribute("value", group);
+        break;
       }
     }
   };
