@@ -122,6 +122,9 @@
     var dList = document.getElementById(newlist);
 
     if (dList.childElementCount < 1) {
+      var high = document.createElement('li');
+      high.innerHTML = "high";
+      dList.appendChild(high);
       for (var i = 1; i < list.childElementCount; i++) {
         var op = document.createElement('input');
         var label = document.createElement('label');
@@ -135,6 +138,10 @@
         if (list.childNodes[i+1].className == "") {
           dList.appendChild(op);
           dList.appendChild(label);
+        } else if (list.childNodes[i+1].innerText == "medium" || list.childNodes[i+1].innerText == "medium") { 
+          var pri = document.createElement('li');
+          pri.innerHTML = "high";
+          dList.appendChild(pri);
         }
       }
     }
