@@ -42,7 +42,7 @@
 
   </ol>
   <input id="editShow" type="button" value="Edit Item Priority" onclick="change(this); return false;">
-  <input id="editSubmit" type="hidden" type="submit" value="Submit change" >
+  <input id="editSubmit" class="hidden" type="submit" value="Submit change" >
   <input type="button" onclick="cancel()" value="Cancel">
 </form>
 <script>
@@ -166,6 +166,7 @@
         form.setAttribute('style', 'padding-left:30px;')
         form.innerHTML = "New Priority level <input type='number' name='priority' min='1' max='3'>";
         ele[i].after(form);
+        ele[i].after("we also need to remove this label");
       }
     }
 
