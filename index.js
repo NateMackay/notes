@@ -15,7 +15,7 @@ express()
 
   // retrieve data from the database
   .get('/todo', async(req,res) => {
-    console.log("received request to access todo");
+    console.log("received request to access database");
 
     try {
       const client = await pool.connect();
@@ -35,7 +35,7 @@ express()
       console.log("request to add an item to the list");
 
       const client = await pool.connect();
-      const todo   = await client.query("INSERT INTO Todo (item, priority) VALUES ('" + req.query.item + "', " + req.query.priority + ")");
+      const todo   = await client.query("INSERT INTO Todo (item, priority) VALUES ('" + req.query.item + "', " + req.query.editLister + ")");
 
       res.redirect('https://nates-notes.herokuapp.com');
       client.release();
