@@ -161,7 +161,7 @@
         // group += "<br><div>Current priority is " + ele[i].value + ".";
         // ele[i].setAttribute("value", group);
         // break;
-
+        ele[i].parentElement.removeChild(ele[i].nextSibling);
         var form = document.createElement('div');
         form.setAttribute('style', 'padding-left:30px;')
         form.innerHTML = "New Priority level <input type='number' name='priority' min='1' max='3'>";
