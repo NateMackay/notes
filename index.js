@@ -35,7 +35,7 @@ express()
       console.log("request to add an item to the list");
 
       const client = await pool.connect();
-      const todo   = await client.query("INSERT INTO Todo (item, priority) VALUES ('" + req.query.item + "', " + req.query.editLister + ")");
+      const todo   = await client.query("INSERT INTO Todo (item, priority) VALUES ('" + req.query.item + "', " + req.query.priority + ")");
 
       res.redirect('https://nates-notes.herokuapp.com');
       client.release();
@@ -65,7 +65,7 @@ express()
       console.log("request to update an item with a new priorty");
 
       const client = await pool.connect();
-      const todo   = await client.query("UPDATE Todo SET priority=" + req.query.priority + " WHERE item='" + req.query.item + "';");
+      const todo   = await client.query("UPDATE Todo SET priority=" + req.query.priority + " WHERE item='" + req.query.editLister + "';");
 
       res.redirect('https://nates-notes.herokuapp.com');
       client.release();
