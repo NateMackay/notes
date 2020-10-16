@@ -60,6 +60,21 @@ express()
     }
   })
 
+  .get('/edit', async (req, res) => {
+    try { 
+      console.log("request to update an item with a new priorty");
+
+      const client = await pool.connect();
+      const todo   = await client.query("UPDATE Todo WHERE item='" + req.query.item + "' SET priority=" + req.query.priority + ")");
+
+      res.redirect('https://nates-notes.herokuapp.com');
+      client.release();
+    } catch (err) { 
+      console.error(err);
+      res.send("Error: ", err);
+    }
+  })
+
   .listen(PORT, () => console.log('Listening on ${PORT}'))
 
   function addItem() { 

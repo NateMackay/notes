@@ -13,4 +13,3 @@ CREATE TABLE Todo (
 );
 
 INSERT INTO Todo (item, priority) VALUES ('Create web app for Accendero', 1);
-
