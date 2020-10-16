@@ -124,7 +124,7 @@
     if (dList.childElementCount < 1) {
       var high = document.createElement('li');
       high.innerHTML = "high";
-      high.setAttribute('list-style-type',"none");
+      // high.setAttribute('list-style-type',"none");
       dList.appendChild(high);
       for (var i = 1; i < list.childElementCount; i++) {
         var op = document.createElement('input');
@@ -141,7 +141,7 @@
           dList.appendChild(label);
         } else if (list.childNodes[i+1].innerText == "medium" || list.childNodes[i+1].innerText == "low") { 
           var pri = document.createElement('li');
-          pri.setAttribute('list-style-type',"none");
+          // pri.setAttribute('list-stylke-type',"none");
           pri.innerHTML = list.childNodes[i+1].innerText;
           dList.appendChild(pri);
         }
@@ -158,11 +158,13 @@
     group = "";
     for (i = 0; i < ele.length; i++) { 
       if ( ele[i].checked ) {
-        group += "<br><div>Current priority is " + ele[i].value + ".";
-        ele[i].setAttribute("value", group);
+        // group += "<br><div>Current priority is " + ele[i].value + ".";
+        // ele[i].setAttribute("value", group);
         break;
       }
     }
+
+    console.log(i);
   };
 </script>
 
