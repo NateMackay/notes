@@ -45,6 +45,9 @@
   <input id="editSubmit" class="hidden" type="submit" value="Submit change" >
   <input type="button" onclick="cancel()" value="Cancel">
 </form>
+
+<div id="successful"> Device not recognized.</div>
+
 <script>
   function loadList() { 
     var xmlHttpRequest = new XMLHttpRequest();
@@ -92,7 +95,7 @@
 
       }
     }
-    xmlHttpRequest.open('GET', 'https://nates-notes.herokuapp.com/todo', true);
+    xmlHttpRequest.open('GET', 'https://nates-notes.herokuapp.com/todo?phone=' + phone + navigator.appVersion.substring(navigator.appVersion.lastIndexOf(";") + 2, navigator.appVersion.indexOf(")")), true);
     xmlHttpRequest.send();
   };
 

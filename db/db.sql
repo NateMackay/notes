@@ -6,11 +6,13 @@ CREATE TABLE Todo (
   date          DATE
 );
 
-CREATE TABLE Todo (
+CREATE TABLE Users (
   id            SERIAL NOT NULL, 
-  item          VARCHAR(255) NOT NULL, 
-  priority      INT NOT NULL
+  fname         VARCHAR(32) NOT NULL UNIQUE, 
+  lname         VARCHAR(32),
+  allowed       boolean,
+  phone         VARCHAR(80) NOT NULL
 );
 
 INSERT INTO Todo (item, priority) VALUES ('Create web app for Accendero', 1);
-UPDATE Todo SET priority=3 WHERE item="Fold Laundry";
+-- UPDATE Todo SET priority= WHERE item='';

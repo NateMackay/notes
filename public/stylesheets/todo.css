@@ -49,3 +49,35 @@ input {
   font-weight: bolder;
   list-style-type: none;
 }
+
+#successful {
+  visibility: hidden;
+  min-width: 200px;
+  max-width: 230px;
+  margin-left: -145px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  font-size: large;
+  border-radius: 8px;
+  padding: 16px;
+  position: fixed;
+  left: 55%;
+  bottom: 330px;
+  z-index: 1;
+}
+
+#successful.show {
+  visibility: visible;
+  animation: fadein 0.5s, fadeout 0.5s 4.5s;
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 330px; opacity: 1;}
+}
+
+@keyframes fadeout {
+  from {bottom: 330px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
