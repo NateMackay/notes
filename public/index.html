@@ -124,6 +124,7 @@
     if (dList.childElementCount < 1) {
       var high = document.createElement('li');
       high.innerHTML = "high";
+      high.setAttribute('list-style-type',"none");
       dList.appendChild(high);
       for (var i = 1; i < list.childElementCount; i++) {
         var op = document.createElement('input');
@@ -138,9 +139,10 @@
         if (list.childNodes[i+1].className == "") {
           dList.appendChild(op);
           dList.appendChild(label);
-        } else if (list.childNodes[i+1].innerText == "medium" || list.childNodes[i+1].innerText == "medium") { 
+        } else if (list.childNodes[i+1].innerText == "medium" || list.childNodes[i+1].innerText == "low") { 
           var pri = document.createElement('li');
-          pri.innerHTML = "high";
+          pri.setAttribute('list-style-type',"none");
+          pri.innerHTML = list.childNodes[i+1].innerText;
           dList.appendChild(pri);
         }
       }
