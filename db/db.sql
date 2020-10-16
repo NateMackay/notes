@@ -13,3 +13,4 @@ CREATE TABLE Todo (
 );
 
 INSERT INTO Todo (item, priority) VALUES ('Create web app for Accendero', 1);
+UPDATE Todo SET priority=3 WHERE item="Fold Laundry";
