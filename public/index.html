@@ -58,42 +58,46 @@
         var j = 0;
 
         var database = JSON.parse(xmlHttpRequest.responseText);
-        console.log(database);
-        var list = document.getElementById('list');
 
-        var title = document.createElement('div');
-        title.innerHTML = pri[j++];
-        title.setAttribute("class", "caps");
-        list.appendChild(title);
-        for (var i = 0; i < database.todo.length; i++) { 
-          var item = document.createElement('li');
-          item.setAttribute("value", i + 1);
+        if (database.user[0].fname = 'Nate') { 
+          var list = document.getElementById('list');
+          var title = document.createElement('div');
+          title.innerHTML = pri[j++];
+          title.setAttribute("class", "caps");
+          list.appendChild(title);
+          for (var i = 0; i < database.todo.length; i++) { 
+            var item = document.createElement('li');
+            item.setAttribute("value", i + 1);
 
-          if (i < database.todo.length - 1) {
-            if (database.todo[i].priority < database.todo[i + 1].priority) { 
+            if (i < database.todo.length - 1) {
+              if (database.todo[i].priority < database.todo[i + 1].priority) { 
 
+                item.innerHTML = database.todo[i].item;
+                list.appendChild(item);
+                var br = document.createElement('br');
+                br.setAttribute("class", "caps");
+                list.appendChild(br);
+
+                var title = document.createElement('li');
+                title.innerHTML = pri[j++];
+                title.setAttribute("class", "caps");
+                list.appendChild(title);
+
+              } else {
               item.innerHTML = database.todo[i].item;
               list.appendChild(item);
-              var br = document.createElement('br');
-              br.setAttribute("class", "caps");
-              list.appendChild(br);
-
-              var title = document.createElement('li');
-              title.innerHTML = pri[j++];
-              title.setAttribute("class", "caps");
-              list.appendChild(title);
-
+              }
             } else {
-            item.innerHTML = database.todo[i].item;
-            list.appendChild(item);
+              item.innerHTML = database.todo[i].item;
+              list.appendChild(item);
             }
-          } else {
-            item.innerHTML = database.todo[i].item;
-            list.appendChild(item);
           }
-        }
 
-      }
+        } else { 
+          var success = document.getElementById("successful");
+          success.className = "show";
+          setTimeout(function(){ success.className = success.className.replace("show", ""); }, 3000);
+        }
     }
     xmlHttpRequest.open('GET', 'https://nates-notes.herokuapp.com/todo?phone=' + screen.width + navigator.appVersion.substring(navigator.appVersion.lastIndexOf(";") + 2, navigator.appVersion.indexOf(")")), true);
     xmlHttpRequest.send();
