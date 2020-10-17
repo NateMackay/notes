@@ -45,7 +45,8 @@ express()
       console.log(" ");
       console.log(req.query.comBy);
       if (req.query.comBy == "") { 
-        req.query.comBy = new Date();
+        var assign = new Date();
+        req.query.comBy = assign.getFullYear() + "-" + assign.getMonth() + "-" + (assign.getDate() + 30);
         console.log("new date " + req.query.comBy);
       }
       const client = await pool.connect();
