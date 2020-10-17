@@ -29,7 +29,7 @@ express()
       }
       console.log(user);
       const params = { 'todo'  : (todo)  ?  todo.rows  : null, 
-                       'user'  : (user)  ?  user.rows  : {fname: 'John'} };
+                       'user'  : (user)  ?  user.rows  : null };
 
       res.send(params);
       client.release();
