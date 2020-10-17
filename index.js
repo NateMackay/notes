@@ -25,7 +25,7 @@ express()
       console.log(user.rows);
       
       if (user.rows == "" ) {
-        var user = rows: [{id: 5, fname: 'John', access: false}];
+        var user = {id: 5, fname: 'John', access: false};
       }
       console.log(user);
       const params = { 'todo'  : (todo)  ?  todo.rows  : null, 
