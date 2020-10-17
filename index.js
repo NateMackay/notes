@@ -16,11 +16,12 @@ express()
   // retrieve data from the database
   .get('/todo', async(req,res) => {
     console.log("received request to access database");
+    var user = {id: 5, fname: 'John', access: false};
 
     try {
       const client = await pool.connect();
       const todo   = await client.query('SELECT * FROM Todo ORDER BY priority, id');
-      const user   = await client.query("SELECT fname FROM Users WHERE phone='" + req.query.phone + "';");
+      user   = await client.query("SELECT fname FROM Users WHERE phone='" + req.query.phone + "';");
       const params = { 'todo'  : (todo)  ?  todo.rows  : null, 
                        'user'  : (user)  ?  user.rows  : 'John' };
 
