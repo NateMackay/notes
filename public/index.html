@@ -17,7 +17,7 @@
 
 </ol>
 
-<button id="addItem" onclick="addItem()">Create a new todo item</button>
+<button id="addItem" class="hidden" onclick="addItem()">Create a new todo item</button>
 <form id="todo" method="GET" action="/update">
   
   <table class="hidden" id="addForm">
@@ -27,7 +27,7 @@
   </table>
 </form>
 
-<button id="deleteItem" onclick="del('deleteItem', 'del', 'delList')">Delete an item</button>
+<button id="deleteItem" class="hidden" onclick="del('deleteItem', 'del', 'delList')">Delete an item</button>
 <form class="hidden" id="del" method="GET" action="/delete">
   <ol id="delList">
   </ol>
@@ -36,7 +36,7 @@
 </form>
 
 <br>
-<button id="change" onclick="del('change', 'edit', 'editList')">Change item priority</button>
+<button id="change" class="hidden" onclick="del('change', 'edit', 'editList')">Change item priority</button>
 <form class="hidden" id="edit" method="GET" action="edit">
   <ol id="editList">
 
@@ -92,14 +92,13 @@
               list.appendChild(item);
             }
           }
-
+          document.getElementById('addItem').style.display = "initial";
+          document.getElementById('deleteItem').style.display = "initial";
+          document.getElementById('change').style.display = "initial";
         } else { 
           var success = document.getElementById("successful");
           success.className = "show";
           setTimeout(function(){ success.className = success.className.replace("show", ""); }, 3000);
-          document.getElementById('addItem').style.display = "none";
-          document.getElementById('deleteItem').style.display = "none";
-          document.getElementById('change').style.display = "none";
         }
       }
     }
