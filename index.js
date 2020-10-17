@@ -22,10 +22,10 @@ express()
       const client = await pool.connect();
       const todo   = await client.query('SELECT * FROM Todo ORDER BY priority, id');
       user   = await client.query("SELECT fname FROM Users WHERE phone='" + req.query.phone + "';");
-      console.log(user);
+      console.log(user.rows);
       
       if (user.rows == "" ) {
-        var user = [{id: 5, fname: 'John', access: false}];
+        var user = rows: [{id: 5, fname: 'John', access: false}];
       }
       console.log(user);
       const params = { 'todo'  : (todo)  ?  todo.rows  : null, 
