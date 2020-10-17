@@ -30,7 +30,7 @@ express()
       }
       console.log(user[0]);
       const params = { 'todo'  : (todo)  ?  todo.rows  : null, 
-                       'user'  : (user.rows)  ?  user.rows  : user[0] };
+                       'user'  : (user.rows)  ?  user.rows  : user };
 
       res.send(params);
       client.release();
