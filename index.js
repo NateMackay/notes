@@ -22,7 +22,7 @@ express()
       const todo   = await client.query('SELECT * FROM Todo ORDER BY priority, id');
       const user   = await client.query("SELECT fname FROM Users WHERE phone='" + req.query.phone + "';");
       const params = { 'todo'  : (todo)  ?  todo.rows  : null, 
-                       'user'  : (user)  ?  user.rows  : null };
+                       'user'  : (user)  ?  user.rows  : 'John' };
 
       res.send(params);
       client.release();
@@ -52,7 +52,7 @@ express()
       console.log("request to delete an item");
 
       const client = await pool.connect();
-      const todo   = await client.query("DELETE FROM Todo WHERE item='" + req.query.item + "'");
+      const todo   = await client.query("DELETE FROM Todo WHERE item='" + req.query.delLister + "';");
 
       res.redirect('https://nates-notes.herokuapp.com');
       client.release();
