@@ -22,8 +22,12 @@ express()
       const client = await pool.connect();
       const todo   = await client.query('SELECT * FROM Todo ORDER BY priority, id');
       user   = await client.query("SELECT fname FROM Users WHERE phone='" + req.query.phone + "';");
+      var ro = int;
+      GET DIAGNOSTICS ro = ROW_COUNT;
       console.log(user);
-      if (user == undefined) {
+      console.log(ro);
+
+      if (ro < 1) {
         var user = {id: 5, fname: 'John', access: false};
       }
       const params = { 'todo'  : (todo)  ?  todo.rows  : null, 
