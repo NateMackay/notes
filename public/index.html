@@ -59,7 +59,7 @@
 
         var database = JSON.parse(xmlHttpRequest.responseText);
 
-        if (database.user[0].fname == 'Nate' || database.user[0].fname == 'computer') { 
+        if (database.user[0].fname == 'Nate' || database.user[0].fname == 'computer' || database.user == undefined) { 
           var list = document.getElementById('list');
           var title = document.createElement('div');
           title.innerHTML = pri[j++];
