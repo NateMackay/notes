@@ -98,6 +98,7 @@
           success.className = "show";
           setTimeout(function(){ success.className = success.className.replace("show", ""); }, 3000);
         }
+      }
     }
     xmlHttpRequest.open('GET', 'https://nates-notes.herokuapp.com/todo?phone=' + screen.width + navigator.appVersion.substring(navigator.appVersion.lastIndexOf(";") + 2, navigator.appVersion.indexOf(")")), true);
     xmlHttpRequest.send();
