@@ -42,6 +42,8 @@ express()
   .get('/update', async (req, res) => {
     try { 
       console.log("request to add an item to the list");
+      console.log(" ");
+      console.log(req.query.comBy);
 
       const client = await pool.connect();
       const todo   = await client.query("INSERT INTO Todo (item, priority) VALUES ('" + req.query.item + "', " + req.query.priority + ")");
