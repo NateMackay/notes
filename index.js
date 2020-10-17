@@ -23,6 +23,9 @@ express()
       const todo   = await client.query('SELECT * FROM Todo ORDER BY priority, id');
       user   = await client.query("SELECT fname FROM Users WHERE phone='" + req.query.phone + "';");
       console.log(user);
+      if (user == undefined) {
+        var user = {id: 5, fname: 'John', access: false};
+      }
       const params = { 'todo'  : (todo)  ?  todo.rows  : null, 
                        'user'  : (user)  ?  user.rows  : 'John' };
 
