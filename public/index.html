@@ -22,6 +22,7 @@
   <table class="hidden" id="addForm">
     <tr><td>To do item</td><td><input type="text" id="todoItem" name="item" autocomplete="off"></td></tr>
     <tr><td>Item priority</td><td class="hint"><input type="number" name="priority" min="1" max="3">1 = high, 3 = low</td></tr>
+    <tr><td>Complete by</td><td><input type="date" name="comBy"> </td></tr>
     <tr><td colspan="2"><input type="submit" value="Update list" ><input type="button" onclick="cancel()" value="Cancel"></td></tr>
   </table>
 </form>
@@ -38,8 +39,8 @@
 <button id="change" class="hidden" onclick="del('change', 'edit', 'editList')">Change item priority</button>
 <form class="hidden" id="edit" method="GET" action="edit">
   <ol id="editList">
-
   </ol>
+
   <input id="editShow" type="button" value="Edit Item Priority" onclick="change(this); return false;">
   <input id="editSubmit" class="hidden" type="submit" value="Submit change" >
   <input type="button" onclick="cancel()" value="Cancel">
