@@ -213,7 +213,7 @@
   // calculate the number of days between today and the input
   function dayDiff(date) { 
     var now = new Date();
-    if (parseInt(date.substring(5,7)) - (now.getMonth() + 1) < 0) {
+    if (parseInt(date.substring(5,7)) - (now.getMonth() + 1) < 1) {
       return parseInt(date.substring(8,10)) - now.getDate();
     } else {
       return 100;
