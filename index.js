@@ -52,7 +52,7 @@ express()
         console.log("new date " + req.query.comBy);
       }
       const client = await pool.connect();
-      const todo   = await client.query("INSERT INTO Todo (item, priority, date, submittedBy) VALUES ('" + req.query.item + "', " + req.query.priority + ", '" + req.query.comBy + "', " + ("SELECT fname FROM Users WHERE phone='" + req.query.phone + "'") + ")");
+      const todo   = await client.query("INSERT INTO Todo (item, priority, date, submittedBy) VALUES ('" + req.query.item + "', " + req.query.priority + ", '" + req.query.comBy + "', " + "(SELECT fname FROM Users WHERE phone='" + req.query.phone + "')" + ")");
 
       res.redirect('https://nates-notes.herokuapp.com');
       client.release();
