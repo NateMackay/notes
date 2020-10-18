@@ -24,8 +24,7 @@
     <tr><td>Complete by</td><td><input type="date" name="comBy" placeholder="11/01/2020"> </td></tr>
     <tr><td colspan="2"><input type="submit" value="Update list" ><input type="button" onclick="cancel()" value="Cancel"></td></tr>
   </table>
-  <input type="hidden" name="phone" value='screen.width + navigator.appVersion.substring(navigator.appVersion.lastIndexOf(";") + 2, navigator.appVersion.indexOf(")")'>
-</form>
+  <input type="hidden" name="phone" id="phone">
 
 <button id="deleteItem" class="hidden" onclick="del('deleteItem', 'del', 'delList')">Delete an item</button>
 <form class="hidden" id="del" method="GET" action="/delete">
@@ -110,7 +109,7 @@
     document.getElementById('addForm').style.display = "initial";
     document.getElementById('addItem').style.display = "none";
     document.getElementById('todoItem').focus();
-
+    document.getElementById('phone').value = screen.width + navigator.appVersion.substring(navigator.appVersion.lastIndexOf(";") + 2, navigator.appVersion.indexOf(")"));
   };
 
   function cancel() { 
