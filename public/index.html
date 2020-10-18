@@ -85,6 +85,8 @@
 
               } else {
               item.innerHTML = database.todo[i].item;
+              console.log("item " + database.todo[i].item);
+              console.log("date " + database.todo[i].date);
               if (dayDiff(database.todo[i].date) < 5) { 
                 item.innerHTML += " " + formatDate(database.todo[i].date);
                 item.setAttribute("class", "red");
