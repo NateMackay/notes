@@ -53,7 +53,8 @@ express()
       }
       const client = await pool.connect();
       const user   = await client.query("SELECT fname FROM Users WHERE phone='" + req.query.phone + "';");
-      console.log('user.rows[0].fname' + user.rows[0].fname);
+      console.log('phone = ' + req.query.phone);
+      console.log('user.rows[0].fname= ' + user.rows[0].fname);
 
       // "(SELECT fname FROM Users WHERE phone='" + req.query.phone + "')" 
       const todo   = await client.query("INSERT INTO Todo (item, priority, date, submittedBy) VALUES ('" + req.query.item + "', " + req.query.priority + ", '" + req.query.comBy + "', '" + user.rows[0].fname + "')");
