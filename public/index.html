@@ -96,7 +96,7 @@
               list.appendChild(item);
               }
             } else {
-              appItem(database, item, list);
+              appItem(database.todo[i], item, list);
               // item.innerHTML = database.todo[i].item;
               // if (dayDiff(database.todo[i].date) < 5) { 
               //   item.innerHTML += "  -" + formatDate(database.todo[i].date);
@@ -223,9 +223,9 @@
 
   // adds an item to the list
   function appItem(database, item, list) { 
-    item.innerHTML = database.todo[i].item;
-    if (dayDiff(database.todo[i].date) < 5) { 
-      item.innerHTML += "  -" + formatDate(database.todo[i].date);
+    item.innerHTML = database.item;
+    if (dayDiff(database.date) < 5) { 
+      item.innerHTML += "  -" + formatDate(database.date);
       item.setAttribute("class", "red");
     }
     list.appendChild(item);
