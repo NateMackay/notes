@@ -74,8 +74,8 @@
 
                 item.innerHTML = database.todo[i].item;
                 if (dayDiff(database.todo[i].date) < 5) { 
-                  item.innerHTML += "  -" + formatDate(database.todo[i].date);
-                  item.setAttribute("class", "red");
+                  item.innerHTML += "  <span class='red'>-" + formatDate(database.todo[i].date) + "</span>";
+                  // item.setAttribute("class", "red");
                 }
                 list.appendChild(item);
                 var br = document.createElement('br');
