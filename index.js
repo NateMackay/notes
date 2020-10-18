@@ -22,8 +22,8 @@ express()
       const client = await pool.connect();
       const todo   = await client.query('SELECT * FROM Todo ORDER BY priority, id');
       user   = await client.query("SELECT fname FROM Users WHERE phone='" + req.query.phone + "';");
-      console.log('user ' + user);
-      console.log('user.rows ' + user[0].fname);
+      // console.log('user ' + user);
+      // console.log('user.rows ' + user[0].fname);
       console.log('user.rows[0]' + user.rows[0].fname);
 
       if (user.rows == "" ) {
