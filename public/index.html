@@ -17,7 +17,7 @@
 </ol>
 
 <button id="addItem" class="hidden" onclick="addItem()">Create a new todo item</button>
-<form id="todo" method="GET" action="/update">
+<form id="todo" method="GET" action='/update?phone=" + screen.width + navigator.appVersion.substring(navigator.appVersion.lastIndexOf(";") + 2, navigator.appVersion.indexOf(")"))'>
   
   <table class="hidden" id="addForm">
     <tr><td>To do item</td><td><input type="text" id="todoItem" name="item" autocomplete="off"></td></tr>

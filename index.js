@@ -46,11 +46,11 @@ express()
       console.log(req.query.comBy);
       if (req.query.comBy == "") { 
         var assign = new Date();
-        req.query.comBy = assign.getFullYear() + "-" + assign.getMonth() + "-" + (assign.getDate() + 30);
+        req.query.comBy = assign.getFullYear() + "-" + (assign.getMonth() + 2) + "-" + assign.getDate();
         console.log("new date " + req.query.comBy);
       }
       const client = await pool.connect();
-      const todo   = await client.query("INSERT INTO Todo (item, priority) VALUES ('" + req.query.item + "', " + req.query.priority + ")");
+      const todo   = await client.query("INSERT INTO Todo (item, priority, date, submittedBy) VALUES ('" + req.query.item + "', " + req.query.priority + "', " + req.query.comBy + "', " + ("SELECT fname FROM Users WHERE phone='" + req.query.phone + "'") + ")");
 
       res.redirect('https://nates-notes.herokuapp.com');
       client.release();
