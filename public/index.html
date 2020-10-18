@@ -85,6 +85,10 @@
 
               } else {
               item.innerHTML = database.todo[i].item;
+              if (dayDiff(database.todo[i].date) < 5) { 
+                item.innerHTML += " " + formatDate(database.todo[i].date);
+                item.setAttribute("class", "red");
+              }
               list.appendChild(item);
               }
             } else {
@@ -189,6 +193,19 @@
     document.getElementById('npl').focus();
     document.getElementById('editShow').style.display = "none";
     document.getElementById('editSubmit').style.display = "initial";
+  };
+
+
+  // calculate the number of days between today and the input
+  function dayDiff(date) { 
+    var now = new Date();
+    return parseInt(date.substring(8,10)) - now.getDate();
+  };
+
+  // returns the date data type in this form September 24, 2020
+  function formatDate(date) {
+    var month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    return ((date.substring(5,6) > 0) ? month[date.substring(5 ,7) - 1] : month[date.substring(6 ,7) - 1]) + " " + ((date.substring(8,9) > 0) ? date.substring(8, 10) : date.substring(9, 10)) + ", " + date.substring(0, 4);
   };
 </script>
 

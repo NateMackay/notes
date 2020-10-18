@@ -43,6 +43,10 @@ input {
   display: none;
 }
 
+.red { 
+  color: red;
+}
+
 .caps { 
   font-variant: small-caps;
   text-align: center;
