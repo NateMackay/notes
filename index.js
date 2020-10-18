@@ -23,8 +23,8 @@ express()
       const todo   = await client.query('SELECT * FROM Todo ORDER BY priority, id');
       user   = await client.query("SELECT fname FROM Users WHERE phone='" + req.query.phone + "';");
       console.log('user ' + user);
-      console.log('user.rows ' + user.rows);
-      console.log('user.rows[0]' + user.rows[0]);
+      console.log('user.rows ' + user.rows.fname);
+      console.log('user.rows[0]' + user.rows[0].fname);
 
       if (user.rows == "" ) {
         var user = [{id: 5, fname: 'John', access: false}, {id: 5, fname: 'John', access: false}];
