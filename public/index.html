@@ -72,9 +72,10 @@
             if (i < database.todo.length - 1) {
               if (database.todo[i].priority < database.todo[i + 1].priority) { 
 
-                item.innerHTML = database.todo[i].item;
-                if (dayDiff(database.todo[i].date) < 5) { 
-                  item.innerHTML += "  <span class='red'>-" + formatDate(database.todo[i].date) + "</span>";
+                appItem(database.todo[i], item, list);
+                // item.innerHTML = database.todo[i].item;
+                // if (dayDiff(database.todo[i].date) < 5) { 
+                //   item.innerHTML += "  <span class='red'>-" + formatDate(database.todo[i].date) + "</span>";
                   // item.setAttribute("class", "red");
                 }
                 list.appendChild(item);
@@ -88,12 +89,14 @@
                 list.appendChild(title);
 
               } else {
-              item.innerHTML = database.todo[i].item;
-              if (dayDiff(database.todo[i].date) < 5) { 
-                item.innerHTML += "  -" + formatDate(database.todo[i].date);
-                item.setAttribute("class", "red");
-              }
-              list.appendChild(item);
+                appItem(database.todo[i], item, list);
+
+              // item.innerHTML = database.todo[i].item;
+              // if (dayDiff(database.todo[i].date) < 5) { 
+              //   item.innerHTML += "  -" + formatDate(database.todo[i].date);
+              //   item.setAttribute("class", "red");
+              // }
+              // list.appendChild(item);
               }
             } else {
               appItem(database.todo[i], item, list);
@@ -149,7 +152,6 @@
     if (dList.childElementCount < 1) {
       var high = document.createElement('li');
       high.innerHTML = "high";
-      // high.setAttribute('list-style-type',"none");
       dList.appendChild(high);
       for (var i = 1; i < list.childElementCount; i++) {
         var op = document.createElement('input');
@@ -157,7 +159,6 @@
         op.setAttribute("type", "radio");
         op.setAttribute("name", newlist + "er");
         op.setAttribute("id", form + list.childNodes[i+1].innerText);
-        // dList.appendChild(op);
         op.setAttribute("value", list.childNodes[i+1].innerText);
         label.innerHTML = list.childNodes[i+1].innerText + "<br>";
         label.setAttribute("for", form + list.childNodes[i+1].innerText);
@@ -166,7 +167,6 @@
           dList.appendChild(label);
         } else if (list.childNodes[i+1].innerText == "medium" || list.childNodes[i+1].innerText == "low") { 
           var pri = document.createElement('li');
-          // pri.setAttribute('list-stylke-type',"none");
           pri.innerHTML = list.childNodes[i+1].innerText;
           dList.appendChild(pri);
         }
@@ -218,15 +218,14 @@
   // returns the date data type in this form September 24, 2020
   function formatDate(date) {
     var month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    return ((date.substring(5,6) > 0) ? month[date.substring(5 ,7) - 1] : month[date.substring(6 ,7) - 1]) + " " + ((date.substring(8,9) > 0) ? date.substring(8, 10) : date.substring(9, 10)) + ", " + date.substring(0, 4);
+    return ((date.substring(5,6) > 0) ? month[date.substring(5 ,7) - 1] : month[date.substring(6 ,7) - 1]) + " " + ((date.substring(8,9) > 0) ? date.substring(8, 10) : date.substring(9, 10));
   };
 
   // adds an item to the list
   function appItem(database, item, list) { 
     item.innerHTML = database.item;
     if (dayDiff(database.date) < 5) { 
-      item.innerHTML += "  -" + formatDate(database.date);
-      item.setAttribute("class", "red");
+      item.innerHTML += "  <span class='red'>-" + formatDate(database.todo[i].date) + "</span>";
     }
     list.appendChild(item);
   }
