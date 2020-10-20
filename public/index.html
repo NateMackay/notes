@@ -141,7 +141,8 @@
         op.setAttribute("type", "radio");
         op.setAttribute("name", newlist + "er");
         op.setAttribute("id", form + list.childNodes[i+1].innerText);
-        op.setAttribute("value", list.childNodes[i+1].innerHTML.substring(0,list.childNodes[i+1].innerHTML.indexOf("<")));
+        op.setAttribute("value", ((list.childNodes[i+1].innerHTML.indexOf("<") > 0) ? (list.childNodes[i+1].innerHTML.substring(0,list.childNodes[i+1].innerHTML.indexOf("<"))) : (list.childNodes[i+1].innerText)));
+
         label.innerHTML = list.childNodes[i+1].innerText + "<br>";
         label.setAttribute("for", form + list.childNodes[i+1].innerText);
         if (list.childNodes[i+1].className == "") {
