@@ -26,6 +26,7 @@ table {
 
 input[type="number"] {
   text-align: center;
+  padding: 10px;
 }
 
 td { 
