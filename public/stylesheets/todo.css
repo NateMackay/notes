@@ -26,6 +26,9 @@ table {
 
 input[type="number"] {
   text-align: center;
+}
+
+input[type="button"], input[type="submit"] {
   padding: 10px;
 }
 
