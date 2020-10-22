@@ -24,7 +24,7 @@ express()
       user   = await client.query("SELECT fname FROM Users WHERE phone='" + req.query.phone + "';");
       // console.log('user ' + user);
       // console.log('user.rows ' + user[0].fname);
-      console.log('user.rows[0].fname' + user.rows[0].fname);
+      // console.log('user.rows[0].fname' + user.rows[0].fname);
 
       if (user.rows == "" ) {
         var user = [{id: 5, fname: 'John', access: false}, {id: 5, fname: 'John', access: false}];
