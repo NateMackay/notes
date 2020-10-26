@@ -17,7 +17,7 @@
 </ol>
 
 <button id="addItem" class="hidden" onclick="addItem()">Create a new todo item</button>
-<form id="todo" method="GET" action='/update'>
+<form id="todo" method="GET" action='/updatejen'>
   <table class="hidden" id="addForm">
     <tr><td>To do item</td><td><input type="text" id="todoItem" name="item" autocomplete="off"></td></tr>
     <tr><td>Item priority</td><td class="hint"><input type="number" name="priority" min="1" max="3">1 = high, 3 = low</td></tr>
@@ -28,7 +28,7 @@
 </form>
 
 <button id="deleteItem" class="hidden" onclick="del('deleteItem', 'del', 'delList')">Delete an item</button>
-<form class="hidden" id="del" method="GET" action="/delete">
+<form class="hidden" id="del" method="GET" action="/deletejen">
   <ol id="delList">
   </ol>
   <input type="submit" value="Delete Item" >
@@ -37,7 +37,7 @@
 
 <br>
 <button id="change" class="hidden" onclick="del('change', 'edit', 'editList')">Change item priority</button>
-<form class="hidden" id="edit" method="GET" action="edit">
+<form class="hidden" id="edit" method="GET" action="/editjen">
   <ol id="editList">
   </ol>
 
@@ -100,7 +100,7 @@
         }
       }
     }
-    xmlHttpRequest.open('GET', 'https://nates-notes.herokuapp.com/todo?phone=' + screen.width + navigator.appVersion.substring(navigator.appVersion.lastIndexOf(";") + 2, navigator.appVersion.indexOf(")")), true);
+    xmlHttpRequest.open('GET', 'https://nates-notes.herokuapp.com/jen.html/todojen?phone=' + screen.width + navigator.appVersion.substring(navigator.appVersion.lastIndexOf(";") + 2, navigator.appVersion.indexOf(")")), true);
     xmlHttpRequest.send();
   };
 
