@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do list</title>
+    <link rel="shortcut icon" href="https://www.flaticon.com/svg/static/icons/svg/1617/1617614.svg" type="image/x-icon" >
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/todo.css">
+  </head>
+
+<body onload="loadList()">
+
+<h1>To do</h1>
+
+<ol id="list">
+</ol>
+
+<button id="addItem" class="hidden" onclick="addItem()">Create a new moving item</button>
+<form id="todo" method="GET" action='/update'>
+  <table class="hidden" id="addForm">
+    <tr><td>To do item</td><td><input type="text" id="todoItem" name="item" autocomplete="off"></td></tr>
+    <tr><td>Item priority</td><td class="hint"><input type="number" name="priority" min="1" max="3">1 = high, 3 = low</td></tr>
+    <tr><td>Complete by</td><td><input type="date" name="comBy"> </td></tr>
+    <tr><td colspan="2"><input type="submit" value="Update list" ><input type="button" onclick="cancel()" value="Cancel"></td></tr>
+  </table>
+  <input type="hidden" name="phone" id="phone">
+</form>
+
+<button id="deleteItem" class="hidden" onclick="del('deleteItem', 'del', 'delList')">Delete an item</button>
+<form class="hidden" id="del" method="GET" action="/delete">
+  <ol id="delList">
+  </ol>
+  <input type="submit" value="Delete Item" >
+  <input type="button" onclick="cancel()" value="Cancel">
+</form>
+
+<br>
+<button id="change" class="hidden" onclick="del('change', 'edit', 'editList')">Change item priority</button>
+<form class="hidden" id="edit" method="GET" action="edit">
+  <ol id="editList">
+  </ol>
+
+  <input id="editShow" type="button" value="Edit Item Priority" onclick="change(this); return false;">
+  <input id="editSubmit" class="hidden" type="submit" value="Submit change" >
+  <input type="button" onclick="cancel()" value="Cancel">
+</form>
+
+<div id="successful"> Device not recognized.</div>
+
+<script>
+  function loadList() { 
+    var xmlHttpRequest = new XMLHttpRequest();
+    xmlHttpRequest.onreadystatechange = function() { 
+      if (xmlHttpRequest.readyState == XMLHttpRequest.DONE && xmlHttpRequest.status == 200 ) {
+        console.log('getting database request');
+        var pri = ["high priority", "medium", "low"];
+        var j = 0;
+
+        var database = JSON.parse(xmlHttpRequest.responseText);
+
+        if (database.user[0].fname == 'Nate' || database.user[0].fname == 'computer') { 
+          var list = document.getElementById('list');
+          var title = document.createElement('div');
+          title.innerHTML = pri[j++];
+          title.setAttribute("class", "caps");
+          list.appendChild(title);
+          for (var i = 0; i < database.todo.length; i++) { 
+            var item = document.createElement('li');
+            item.setAttribute("value", i + 1);
+
+            if (i < database.todo.length - 1) {
+              if (database.todo[i].priority < database.todo[i + 1].priority) { 
+
+                appItem(database.todo[i], item, list);
+                var br = document.createElement('br');
+                br.setAttribute("class", "caps");
+                list.appendChild(br);
+
+                var title = document.createElement('li');
+                title.innerHTML = pri[j++];
+                title.setAttribute("class", "caps");
+                list.appendChild(title);
+
+              } else {
+                appItem(database.todo[i], item, list);
+
+              }
+            } else {
+              appItem(database.todo[i], item, list);
+            }
+          }
+          document.getElementById('addItem').style.display = "initial";
+          document.getElementById('deleteItem').style.display = "initial";
+          document.getElementById('change').style.display = "initial";
+        } else { 
+          var success = document.getElementById("successful");
+          success.className = "show";
+          setTimeout(function(){ success.className = success.className.replace("show", ""); }, 2000);
+        }
+      }
+    }
+    xmlHttpRequest.open('GET', 'https://nates-notes.herokuapp.com/todo?phone=' + screen.width + navigator.appVersion.substring(navigator.appVersion.lastIndexOf(";") + 2, navigator.appVersion.indexOf(")")), true);
+    xmlHttpRequest.send();
+  };
+
+  function addItem() { 
+    document.getElementById('addForm').style.display = "initial";
+    document.getElementById('addItem').style.display = "none";
+    document.getElementById('todoItem').focus();
+    document.getElementById('phone').value = screen.width + navigator.appVersion.substring(navigator.appVersion.lastIndexOf(";") + 2, navigator.appVersion.indexOf(")"));
+  };
+
+  function cancel() { 
+    document.getElementById('list').style.display = "revert";
+
+    document.getElementById('addForm').style.display = "none";
+    document.getElementById('addItem').style.display = "initial";
+
+    document.getElementById('del').style.display = "none";
+    document.getElementById('deleteItem').style.display = "revert";
+
+    document.getElementById('change').style.display = "revert";
+    document.getElementById('edit').style.display = "none ";
+    document.getElementById('editList').style.display = "revert";
+    
+  }
+
+  function del(button, form, newlist) { 
+    document.getElementById(form).style.display = "initial";
+    var list  = document.getElementById('list');
+    var dList = document.getElementById(newlist);
+
+    if (dList.childElementCount < 1) {
+      var high = document.createElement('li');
+      high.innerHTML = "high";
+      dList.appendChild(high);
+      for (var i = 1; i < list.childElementCount; i++) {
+        var op = document.createElement('input');
+        var label = document.createElement('label');
+        op.setAttribute("type", "radio");
+        op.setAttribute("name", newlist + "er");
+        op.setAttribute("id", form + list.childNodes[i+1].innerText);
+        op.setAttribute("value", ((list.childNodes[i+1].innerHTML.indexOf("<") > 0) ? (list.childNodes[i+1].innerHTML.substring(0,list.childNodes[i+1].innerHTML.indexOf("<"))) : (list.childNodes[i+1].innerText)));
+
+        label.innerHTML = list.childNodes[i+1].innerText + "<br>";
+        label.setAttribute("for", form + list.childNodes[i+1].innerText);
+        if (list.childNodes[i+1].className == "") {
+          dList.appendChild(op);
+          dList.appendChild(label);
+        } else if (list.childNodes[i+1].innerText == "medium" || list.childNodes[i+1].innerText == "low") { 
+          var pri = document.createElement('li');
+          pri.innerHTML = list.childNodes[i+1].innerText;
+          dList.appendChild(pri);
+        }
+      }
+    }
+    document.getElementById('list').style.display = "none";
+    document.getElementById(button).style.display = "none";
+  };
+
+  function change(item) { 
+    document.getElementById('editSubmit').style.display = "initial";
+
+    var ele = document.getElementsByName('editLister'); 
+    group = "";
+    for (i = 0; i < ele.length; i++) { 
+      if ( ele[i].checked ) {
+        // remove the label
+        ele[i].parentElement.removeChild(ele[i].nextSibling);
+        // add a new input
+        var form = document.createElement('div');
+        form.setAttribute('style', 'padding-left:30px;')
+        form.innerHTML = "New Priority level <input type='number' id='npl' name='priority' min='1' max='3'>";
+        ele[i].after(form);
+        // add the label back
+        var lab = document.createElement('label');
+        lab.setAttribute('for', ele[i].value);
+        lab.innerHTML = ele[i].value;
+        ele[i].after(lab);
+        break;
+      }
+    }
+
+    document.getElementById('npl').focus();
+    document.getElementById('editShow').style.display = "none";
+    document.getElementById('editSubmit').style.display = "initial";
+  };
+
+
+  // calculate the number of days between today and the input
+  function dayDiff(date) { 
+    var now = new Date();
+    if (parseInt(date.substring(5,7)) - (now.getMonth() + 1) < 1) {
+      return parseInt(date.substring(8,10)) - now.getDate();
+    } else {
+      return 100;
+    }
+  };
+
+  // returns the date data type in this form September 24, 2020
+  function formatDate(date) {
+    var month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    return ((date.substring(5,6) > 0) ? month[date.substring(5 ,7) - 1] : month[date.substring(6 ,7) - 1]) + " " + ((date.substring(8,9) > 0) ? date.substring(8, 10) : date.substring(9, 10));
+  };
+
+  // adds an item to the list
+  function appItem(database, item, list) { 
+    item.innerHTML = database.item;
+    if (dayDiff(database.date) < 5) { 
+      item.innerHTML += "<span class='red'>   - " + formatDate(database.date) + "</span>";
+    }
+    list.appendChild(item);
+  }
+</script>
+
+
+</body>
+</html>
