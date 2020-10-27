@@ -25,6 +25,7 @@
     <tr><td colspan="2"><input type="submit" value="Update list" ><input type="button" onclick="cancel()" value="Cancel"></td></tr>
   </table>
   <input type="hidden" name="phone" id="phone">
+  <input type="hidden" name="goback" id="upgoback">
 </form>
 
 <button id="deleteItem" class="hidden" onclick="del('deleteItem', 'del', 'delList')">Delete an item</button>
@@ -33,17 +34,19 @@
   </ol>
   <input type="submit" value="Delete Item" >
   <input type="button" onclick="cancel()" value="Cancel">
+  <input type="hidden" name="goback" id="delgoback">
 </form>
 
 <br>
 <button id="change" class="hidden" onclick="del('change', 'edit', 'editList')">Change item priority</button>
-<form class="hidden" id="edit" method="GET" action="/edit">
+<form class="hidden" id="edit" method="GET" action="edit">
   <ol id="editList">
   </ol>
 
   <input id="editShow" type="button" value="Edit Item Priority" onclick="change(this); return false;">
   <input id="editSubmit" class="hidden" type="submit" value="Submit change" >
   <input type="button" onclick="cancel()" value="Cancel">
+  <input type="hidden" name="goback" id="editgoback">
 </form>
 
 <div id="successful"> Device not recognized.</div>
@@ -59,14 +62,13 @@
 
         var database = JSON.parse(xmlHttpRequest.responseText);
 
-        if (database.user[0].fname == 'Nate' || database.user[0].fname == 'computer' || database.user[0].fname == "Jen") { 
+        if (database.user[0].fname == 'Nate' || database.user[0].fname == 'computer' || database.user[0].fname == 'Jen') { 
           var list = document.getElementById('list');
           var title = document.createElement('div');
           title.innerHTML = pri[j++];
           title.setAttribute("class", "caps");
           list.appendChild(title);
           for (var i = 0; i < database.todo.length; i++) { 
-            if (database.todo[i].submittedby == "Jen") {
             var item = document.createElement('li');
             item.setAttribute("value", i + 1);
 
@@ -91,7 +93,6 @@
               appItem(database.todo[i], item, list);
             }
           }
-          }
           document.getElementById('addItem').style.display = "initial";
           document.getElementById('deleteItem').style.display = "initial";
           document.getElementById('change').style.display = "initial";
@@ -111,6 +112,7 @@
     document.getElementById('addItem').style.display = "none";
     document.getElementById('todoItem').focus();
     document.getElementById('phone').value = screen.width + navigator.appVersion.substring(navigator.appVersion.lastIndexOf(";") + 2, navigator.appVersion.indexOf(")"));
+    document.getElementById('upgoback').value = window.location.href;
   };
 
   function cancel() { 
@@ -159,6 +161,8 @@
     }
     document.getElementById('list').style.display = "none";
     document.getElementById(button).style.display = "none";
+    document.getElementById('editgoback').value = window.location.href;
+    document.getElementById('delgoback').value = window.location.href;
   };
 
   function change(item) { 
@@ -208,7 +212,6 @@
 
   // adds an item to the list
   function appItem(database, item, list) { 
-
     item.innerHTML = database.item;
     if (dayDiff(database.date) < 5) { 
       item.innerHTML += "<span class='red'>   - " + formatDate(database.date) + "</span>";
