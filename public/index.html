@@ -56,6 +56,7 @@
         console.log('getting database request');
         var pri = ["high priority", "medium", "low"];
         var j = 0;
+        var exempt = 0;
 
         var database = JSON.parse(xmlHttpRequest.responseText);
 
@@ -66,28 +67,32 @@
           title.setAttribute("class", "caps");
           list.appendChild(title);
           for (var i = 0; i < database.todo.length; i++) { 
-            var item = document.createElement('li');
-            item.setAttribute("value", i + 1);
+            if (database.todo[i].submittedby == "Nate") {
+              var item = document.createElement('li');
+              item.setAttribute("value", i + 1 + exempt);
 
-            if (i < database.todo.length - 1) {
-              if (database.todo[i].priority < database.todo[i + 1].priority) { 
+              if (i < database.todo.length - 1) {
+                if (database.todo[i].priority < database.todo[i + 1].priority) { 
 
-                appItem(database.todo[i], item, list);
-                var br = document.createElement('br');
-                br.setAttribute("class", "caps");
-                list.appendChild(br);
+                  appItem(database.todo[i], item, list);
+                  var br = document.createElement('br');
+                  br.setAttribute("class", "caps");
+                  list.appendChild(br);
 
-                var title = document.createElement('li');
-                title.innerHTML = pri[j++];
-                title.setAttribute("class", "caps");
-                list.appendChild(title);
+                  var title = document.createElement('li');
+                  title.innerHTML = pri[j++];
+                  title.setAttribute("class", "caps");
+                  list.appendChild(title);
 
+                } else {
+                  appItem(database.todo[i], item, list);
+
+                }
               } else {
                 appItem(database.todo[i], item, list);
-
               }
             } else {
-              appItem(database.todo[i], item, list);
+              exempt--;
             }
           }
           document.getElementById('addItem').style.display = "initial";
