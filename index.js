@@ -20,7 +20,7 @@ express()
 
     try {
       const client = await pool.connect();
-      const todo   = await client.query('SELECT * FROM Todo ORDER BY priority, id');
+      const todo   = await client.query('SELECT * FROM Todo WHERE submittedby= (SELECT fname FROM Users WHERE phone=' + req.query.phone + ') ORDER BY priority, id');
       user   = await client.query("SELECT fname FROM Users WHERE phone='" + req.query.phone + "';");
       // console.log('user ' + user);
       // console.log('user.rows ' + user[0].fname);
