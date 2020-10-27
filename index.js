@@ -110,7 +110,7 @@ express()
 
     try {
       const client = await pool.connect();
-      const todo   = await client.query('SELECT * FROM Idaho ORDER BY priority, id');
+      const todo   = await client.query('SELECT * FROM Idaho ORDER BY catergory');
       user   = await client.query("SELECT fname FROM Users WHERE phone='" + req.query.phone + "';");
 
       if (user.rows == "" ) {
