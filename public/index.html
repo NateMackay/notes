@@ -72,7 +72,7 @@
               item.setAttribute("value", i + 1 + exempt);
 
               if (i < database.todo.length - 1) {
-                if (database.todo[i].priority < database.todo[i + 1].priority) { 
+                if (database.todo[i].priority < database.todo[i + 1 + exempt].priority) { 
 
                   appItem(database.todo[i], item, list);
                   var br = document.createElement('br');
