@@ -60,7 +60,13 @@ express()
       // const todo   = await client.query("INSERT INTO Todo (item, priority, date, submittedBy) VALUES ('" + req.query.item + "', " + req.query.priority + ", '" + req.query.comBy + "', '" + user.rows[0].fname + "')");
       const todo   = await client.query("INSERT INTO Todo (item, priority, date, submittedBy) VALUES ('" + req.query.item + "', " + req.query.priority + ", '" + req.query.comBy + "', (SELECT fname FROM Users WHERE phone='" + req.query.phone + "'))");
 
-      res.redirect('https://nates-notes.herokuapp.com');
+      const todo2  = await client.query("INSERT INTO Todo (item, priority, date, submittedBy) VALUES ('" + req.query.item + "', " + req.query.priority + ", '" + req.query.comBy + "', computer)");
+
+      if (user.rows[0].fname == 'Jen') {
+        res.redirect('https://nates-notes.herokuapp.com/jen.html');        
+      } else {
+        res.redirect('https://nates-notes.herokuapp.com');
+      }
       client.release();
     } catch (err) { 
       console.error(err);
