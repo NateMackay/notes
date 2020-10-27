@@ -96,7 +96,7 @@ express()
       const client = await pool.connect();
       const todo   = await client.query("UPDATE Todo SET priority=" + req.query.priority + " WHERE item='" + req.query.editLister + "';");
 
-      res.redirect('https://nates-notes.herokuapp.com');
+      res.redirect(goback);
       client.release();
     } catch (err) { 
       console.error(err);

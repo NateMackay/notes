@@ -44,6 +44,7 @@
   <input id="editShow" type="button" value="Edit Item Priority" onclick="change(this); return false;">
   <input id="editSubmit" class="hidden" type="submit" value="Submit change" >
   <input type="button" onclick="cancel()" value="Cancel">
+  <input type="hidden" name="goback" id="editgoback">
 </form>
 
 <div id="successful"> Device not recognized.</div>
@@ -185,6 +186,7 @@
     document.getElementById('npl').focus();
     document.getElementById('editShow').style.display = "none";
     document.getElementById('editSubmit').style.display = "initial";
+    document.getElementById('editgoback').value = window.location;
   };
 
 
