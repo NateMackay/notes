@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To do list</title>
+    <title>Things to move list</title>
     <link rel="shortcut icon" href="https://www.flaticon.com/svg/static/icons/svg/1617/1617614.svg" type="image/x-icon" >
 
     <link rel="stylesheet" type="text/css" href="stylesheets/todo.css">
@@ -16,27 +16,30 @@
 <ol id="list">
 </ol>
 
-<button id="addItem" class="hidden" onclick="addItem()">Create a new moving item</button>
-<form id="todo" method="GET" action='/update'>
+<button id="addItem" class="hidden" onclick="addItem()">Create a new todo item</button>
+<form id="todo" method="GET" action='/updatelist'>
   <table class="hidden" id="addForm">
     <tr><td>To do item</td><td><input type="text" id="todoItem" name="item" autocomplete="off"></td></tr>
-    <tr><td>Item priority</td><td class="hint"><input type="number" name="priority" min="1" max="3">1 = high, 3 = low</td></tr>
+    <tr><td>Category</td><td class="hint"><input type="number" name="priority" min="1" max="7" onchange="showCatergory(this)">1 = high, 3 = low</td></tr>
+    <tr><td colspan="2" id="cater"></td></tr>
     <tr><td>Complete by</td><td><input type="date" name="comBy"> </td></tr>
     <tr><td colspan="2"><input type="submit" value="Update list" ><input type="button" onclick="cancel()" value="Cancel"></td></tr>
   </table>
   <input type="hidden" name="phone" id="phone">
+  <input type="hidden" name="goback" id="upgoback">
 </form>
 
 <button id="deleteItem" class="hidden" onclick="del('deleteItem', 'del', 'delList')">Delete an item</button>
-<form class="hidden" id="del" method="GET" action="/delete">
+<form class="hidden" id="del" method="GET" action="/deletelist">
   <ol id="delList">
   </ol>
   <input type="submit" value="Delete Item" >
   <input type="button" onclick="cancel()" value="Cancel">
+  <input type="hidden" name="goback" id="delgoback">
 </form>
 
 <br>
-<button id="change" class="hidden" onclick="del('change', 'edit', 'editList')">Change item priority</button>
+<button id="change" class="hidden" onclick="del('change', 'editlist', 'editList')">Change item category</button>
 <form class="hidden" id="edit" method="GET" action="edit">
   <ol id="editList">
   </ol>
@@ -44,6 +47,7 @@
   <input id="editShow" type="button" value="Edit Item Priority" onclick="change(this); return false;">
   <input id="editSubmit" class="hidden" type="submit" value="Submit change" >
   <input type="button" onclick="cancel()" value="Cancel">
+  <input type="hidden" name="goback" id="editgoback">
 </form>
 
 <div id="successful"> Device not recognized.</div>
@@ -100,7 +104,7 @@
         }
       }
     }
-    xmlHttpRequest.open('GET', 'https://nates-notes.herokuapp.com/todo?phone=' + screen.width + navigator.appVersion.substring(navigator.appVersion.lastIndexOf(";") + 2, navigator.appVersion.indexOf(")")), true);
+    xmlHttpRequest.open('GET', 'https://nates-notes.herokuapp.com/list?phone=' + screen.width + navigator.appVersion.substring(navigator.appVersion.lastIndexOf(";") + 2, navigator.appVersion.indexOf(")")), true);
     xmlHttpRequest.send();
   };
 
@@ -109,6 +113,7 @@
     document.getElementById('addItem').style.display = "none";
     document.getElementById('todoItem').focus();
     document.getElementById('phone').value = screen.width + navigator.appVersion.substring(navigator.appVersion.lastIndexOf(";") + 2, navigator.appVersion.indexOf(")"));
+    // document.getElementById('upgoback').value = window.location.href;
   };
 
   function cancel() { 
@@ -123,7 +128,6 @@
     document.getElementById('change').style.display = "revert";
     document.getElementById('edit').style.display = "none ";
     document.getElementById('editList').style.display = "revert";
-    
   }
 
   function del(button, form, newlist) { 
@@ -157,6 +161,8 @@
     }
     document.getElementById('list').style.display = "none";
     document.getElementById(button).style.display = "none";
+    document.getElementById('editgoback').value = window.location.href;
+    document.getElementById('delgoback').value = window.location.href;
   };
 
   function change(item) { 
@@ -211,6 +217,11 @@
       item.innerHTML += "<span class='red'>   - " + formatDate(database.date) + "</span>";
     }
     list.appendChild(item);
+  }
+
+  function showCatergory(item) {
+    var catergory = ['bed', 'breakfast', 'lunch', 'dinner'];
+    document.getElementById('cater').innerHTML = catergory[item - 1];
   }
 </script>
 

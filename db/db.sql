@@ -16,3 +16,16 @@ CREATE TABLE Users (
 
 INSERT INTO Todo (item, priority) VALUES ('Create web app for Accendero', 1);
 -- UPDATE Todo SET priority= WHERE item='';
+
+
+CREATE TABLE Todo (
+  id            SERIAL NOT NULL, 
+  item          VARCHAR(255) NOT NULL, 
+  placement     INT, 
+  date          DATE, 
+  submittedBY   VARCHAR(80), 
+  category      VARCHAR(80), 
+  checked       BOOLEAN
+);
+
+

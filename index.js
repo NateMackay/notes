@@ -103,14 +103,14 @@ express()
 
 
 
-  // retrieve Jen todo data from the database
-  .get('/todojen', async(req,res) => {
-    console.log("received request to access jen database");
+  // retrieve list data from the database
+  .get('/list', async(req,res) => {
+    console.log("received request to access moving database");
     var user = {id: 5, fname: 'John', access: false};
 
     try {
       const client = await pool.connect();
-      const todo   = await client.query('SELECT * FROM TodoJen ORDER BY priority, id');
+      const todo   = await client.query('SELECT * FROM Idaho ORDER BY priority, id');
       user   = await client.query("SELECT fname FROM Users WHERE phone='" + req.query.phone + "';");
 
       if (user.rows == "" ) {
@@ -128,9 +128,9 @@ express()
     }
   })
 
-  .get('/updatejen', async (req, res) => {
+  .get('/updatelist', async (req, res) => {
     try { 
-      console.log("request to add an item to Jen's list");
+      console.log("request to add an item to Idaho's list");
       console.log(" ");
       console.log(req.query.comBy);
       if (req.query.comBy == "") { 
@@ -143,9 +143,9 @@ express()
       console.log('phone = ' + req.query.phone);
       console.log('user.rows[0].fname= ' + user.rows[0].fname);
 
-      const todo   = await client.query("INSERT INTO TodoJen (item, priority, date, submittedBy) VALUES ('" + req.query.item + "', " + req.query.priority + ", '" + req.query.comBy + "', '" + user.rows[0].fname + "')");
+      const todo   = await client.query("INSERT INTO Idaho (item, priority, date, submittedBy) VALUES ('" + req.query.item + "', " + req.query.priority + ", '" + req.query.comBy + "', '" + user.rows[0].fname + "')");
 
-      res.redirect('https://nates-notes.herokuapp.com/jen.html');
+      res.redirect(req.query.goback);
       client.release();
     } catch (err) { 
       console.error(err);
@@ -153,14 +153,14 @@ express()
     }
   })
 
-  .get('/deletejen', async (req, res) => {
+  .get('/deletelist', async (req, res) => {
     try { 
-      console.log("request to delete a Jen item");
+      console.log("request to delete a moving item");
 
       const client = await pool.connect();
-      const todo   = await client.query("DELETE FROM TodoJen WHERE item='" + req.query.delLister + "';");
+      const todo   = await client.query("DELETE FROM Idaho WHERE item='" + req.query.delLister + "';");
 
-      res.redirect('https://nates-notes.herokuapp.com/jen.html');
+      res.redirect(req.query.goback);
       client.release();
     } catch (err) { 
       console.error(err);
@@ -168,14 +168,14 @@ express()
     }
   })
 
-  .get('/editjen', async (req, res) => {
+  .get('/editlist', async (req, res) => {
     try { 
-      console.log("request to update a Jen item with a new priorty");
+      console.log("request to update a moving item with a new priorty");
 
       const client = await pool.connect();
-      const todo   = await client.query("UPDATE TodoJen SET priority=" + req.query.priority + " WHERE item='" + req.query.editLister + "';");
+      const todo   = await client.query("UPDATE Idaho SET priority=" + req.query.priority + " WHERE item='" + req.query.editLister + "';");
 
-      res.redirect('https://nates-notes.herokuapp.com.jen.html');
+      res.redirect(req.query.goback);
       client.release();
     } catch (err) { 
       console.error(err);
