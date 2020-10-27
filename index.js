@@ -62,11 +62,7 @@ express()
 
       const todo2  = await client.query("INSERT INTO Todo (item, priority, date, submittedBy) VALUES ('" + req.query.item + "', " + req.query.priority + ", '" + req.query.comBy + "', 'computer')");
 
-      if (user.rows[0].fname == 'Jen') {
-        res.redirect('https://nates-notes.herokuapp.com/jen.html');        
-      } else {
-        res.redirect('https://nates-notes.herokuapp.com');
-      }
+      res.redirect(req.query.goback);
       client.release();
     } catch (err) { 
       console.error(err);
@@ -81,7 +77,7 @@ express()
       const client = await pool.connect();
       const todo   = await client.query("DELETE FROM Todo WHERE item='" + req.query.delLister + "';");
 
-      res.redirect('https://nates-notes.herokuapp.com');
+      res.redirect(req.query.goback);
       client.release();
     } catch (err) { 
       console.error(err);

@@ -25,6 +25,7 @@
     <tr><td colspan="2"><input type="submit" value="Update list" ><input type="button" onclick="cancel()" value="Cancel"></td></tr>
   </table>
   <input type="hidden" name="phone" id="phone">
+  <input type="hidden" name="goback" id="upgoback">
 </form>
 
 <button id="deleteItem" class="hidden" onclick="del('deleteItem', 'del', 'delList')">Delete an item</button>
@@ -33,6 +34,7 @@
   </ol>
   <input type="submit" value="Delete Item" >
   <input type="button" onclick="cancel()" value="Cancel">
+  <input type="hidden" name="goback" id="delgoback">
 </form>
 
 <br>
@@ -110,6 +112,7 @@
     document.getElementById('addItem').style.display = "none";
     document.getElementById('todoItem').focus();
     document.getElementById('phone').value = screen.width + navigator.appVersion.substring(navigator.appVersion.lastIndexOf(";") + 2, navigator.appVersion.indexOf(")"));
+    document.getElementById('upgoback').value = window.location.href;
   };
 
   function cancel() { 
@@ -158,6 +161,8 @@
     }
     document.getElementById('list').style.display = "none";
     document.getElementById(button).style.display = "none";
+    document.getElementById('editgoback').value = window.location.href;
+    document.getElementById('delgoback').value = window.location.href;
   };
 
   function change(item) { 
@@ -186,7 +191,6 @@
     document.getElementById('npl').focus();
     document.getElementById('editShow').style.display = "none";
     document.getElementById('editSubmit').style.display = "initial";
-    document.getElementById('editgoback').value = window.location.href;
   };
 
 
