@@ -215,7 +215,7 @@
 
   // adds an item to the list
   function appItem(database, item, list) { 
-    item.innerHTML = '<input type="checkbox" name="' + database.item + '" id="' + database.item + '"><label for="' + database.item + '">';
+    item.innerHTML = '<input type="checkbox" name="' + database.item + '" id="' + database.item + '"><label for="' + database.item + '">' + database.item + '</label>';
     // if (dayDiff(database.date) < 5) { 
     //   item.innerHTML += "<span class='red'>   - " + formatDate(database.date) + "</span>";
     // }
