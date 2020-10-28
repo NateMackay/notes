@@ -143,7 +143,7 @@ express()
       console.log('phone = ' + req.query.phone);
       console.log('user.rows[0].fname= ' + user.rows[0].fname);
 
-      const todo   = await client.query("INSERT INTO Idaho (item, priority, date, submittedBy) VALUES ('" + req.query.item + "', " + req.query.priority + ", '" + req.query.comBy + "', '" + user.rows[0].fname + "')");
+      const todo   = await client.query("INSERT INTO Idaho (item, date, submittedBy, category) VALUES ('" + req.query.item + "', '" + req.query.comBy + "', 'Nate', '" + req.query.category + "')");
 
       res.redirect(req.query.goback);
       client.release();
