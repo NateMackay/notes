@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Things to move list</title>
-    <link rel="shortcut icon" href="https://www.flaticon.com/svg/static/icons/svg/1617/1617614.svg" type="image/x-icon" >
+    <link rel="shortcut icon" href="https://www.flaticon.com/svg/static/icons/svg/948/948717.svg" type="image/x-icon" >
 
     <link rel="stylesheet" type="text/css" href="stylesheets/todo.css">
   </head>
@@ -58,17 +58,20 @@
     xmlHttpRequest.onreadystatechange = function() { 
       if (xmlHttpRequest.readyState == XMLHttpRequest.DONE && xmlHttpRequest.status == 200 ) {
         console.log('getting database request');
-        var pri = ['bed', 'hygiene', 'clothes', 'kitchen', 'cleaner', 'tech', 'breakfast', 'lunch', 'dinner'];
+        var pri = ['bed', 'hygiene', 'clothes', 'kitchen', 'cleaner', 'tech', 'other', 'breakfast', 'lunch', 'dinner'];
         var j = 0;
 
         var database = JSON.parse(xmlHttpRequest.responseText);
 
         if (database.user[0].fname == 'Nate' || database.user[0].fname == 'computer') { 
           var list = document.getElementById('list');
+
+          // first category
           var title = document.createElement('div');
           title.innerHTML = pri[j++];
           title.setAttribute("class", "caps");
           list.appendChild(title);
+
           for (var i = 0; i < database.todo.length; i++) { 
             var item = document.createElement('li');
             item.setAttribute("value", i + 1);
@@ -212,15 +215,15 @@
 
   // adds an item to the list
   function appItem(database, item, list) { 
-    item.innerHTML = database.item;
-    if (dayDiff(database.date) < 5) { 
-      item.innerHTML += "<span class='red'>   - " + formatDate(database.date) + "</span>";
-    }
+    item.innerHTML = '<input type="checkbox" name="' + database.item + '" id="' + database.item + '"><label for="' + database.item + '">';
+    // if (dayDiff(database.date) < 5) { 
+    //   item.innerHTML += "<span class='red'>   - " + formatDate(database.date) + "</span>";
+    // }
     list.appendChild(item);
   }
 
   function showCategory(item) {
-    var category = ['bed', 'hygiene', 'clothes', 'kitchen', 'cleaner', 'tech',, 'breakfast', 'lunch', 'dinner'];
+    var category = ['bed', 'hygiene', 'clothes', 'kitchen', 'cleaner', 'tech', 'other', 'breakfast', 'lunch', 'dinner'];
     document.getElementById('cater').innerHTML = category[item.value - 1];
   }
 </script>
