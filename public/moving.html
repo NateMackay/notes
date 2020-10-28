@@ -20,7 +20,7 @@
 <form id="todo" method="GET" action='/updatelist'>
   <table class="hidden" id="addForm">
     <tr><td>To do item</td><td><input type="text" id="todoItem" name="item" autocomplete="off"></td></tr>
-    <tr><td>Category</td><td class="hint"><input type="number" name="category" min="1" max="10" onchange="showCategory(this)">1 = high, 3 = low</td></tr>
+    <tr><td>Category</td><td class="hint"><input type="number" name="category" min="1" max="7" onchange="showCategory(this)">1 = high, 3 = low</td></tr>
     <tr><td colspan="2" id="cater"></td></tr>
     <tr><td>Complete by</td><td><input type="date" name="comBy"> </td></tr>
     <tr><td colspan="2"><input type="submit" value="Update list" ><input type="button" onclick="cancel()" value="Cancel"></td></tr>
@@ -215,7 +215,7 @@
 
   // adds an item to the list
   function appItem(database, item, list) { 
-    item.innerHTML = '<input type="checkbox" name="' + database.item + '" id="' + database.item + '"><label for="' + database.item + '">' + database.item + '</label>';
+    item.innerHTML = database.item;
     // if (dayDiff(database.date) < 5) { 
     //   item.innerHTML += "<span class='red'>   - " + formatDate(database.date) + "</span>";
     // }
