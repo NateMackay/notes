@@ -58,7 +58,7 @@
     xmlHttpRequest.onreadystatechange = function() { 
       if (xmlHttpRequest.readyState == XMLHttpRequest.DONE && xmlHttpRequest.status == 200 ) {
         console.log('getting database request');
-        var pri = ['bed', 'breakfast', 'lunch', 'dinner'];
+        var pri = ['bed', 'hygiene', 'clothes', 'kitchen', 'cleaner', 'tech', 'breakfast', 'lunch', 'dinner'];
         var j = 0;
 
         var database = JSON.parse(xmlHttpRequest.responseText);
@@ -220,7 +220,7 @@
   }
 
   function showCategory(item) {
-    var category = ['bed', 'breakfast', 'lunch', 'dinner'];
+    var category = ['bed', 'hygiene', 'clothes', 'kitchen', 'cleaner', 'tech',, 'breakfast', 'lunch', 'dinner'];
     document.getElementById('cater').innerHTML = category[item.value - 1];
   }
 </script>
