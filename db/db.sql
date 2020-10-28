@@ -24,8 +24,11 @@ CREATE TABLE Idaho (
   placement     INT, 
   date          DATE, 
   submittedBY   VARCHAR(80), 
-  category      VARCHAR(80), 
+  category      INT, 
   checked       BOOLEAN
 );
 
+INSERT INTO Idaho (item, date, submittedBy, category)
+VALUES ('bed/air mattress', '2020-10-27', 'Nate', 1)
+;
 
