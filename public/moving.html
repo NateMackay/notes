@@ -222,6 +222,14 @@
     list.appendChild(item);
   }
 
+  var check = document.querySelector('ol');
+  list.addEventListener('dbclick', function(ev) {
+    if (ev.target.tagName === 'LI') {
+      ev.target.classList.toggle('checked');
+    }
+  }, false);
+
+
   function showCategory(item) {
     var category = ['bed', 'hygiene', 'clothes', 'kitchen', 'cleaner', 'tech', 'other', 'breakfast', 'lunch', 'dinner'];
     document.getElementById('cater').innerHTML = category[item.value - 1];
