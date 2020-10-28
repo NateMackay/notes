@@ -20,7 +20,7 @@
 <form id="todo" method="GET" action='/updatelist'>
   <table class="hidden" id="addForm">
     <tr><td>To do item</td><td><input type="text" id="todoItem" name="item" autocomplete="off"></td></tr>
-    <tr><td>Category</td><td class="hint"><input type="number" name="catergory" min="1" max="7" onchange="showCatergory(this)">1 = high, 3 = low</td></tr>
+    <tr><td>Category</td><td class="hint"><input type="number" name="category" min="1" max="7" onchange="showCategory(this)">1 = high, 3 = low</td></tr>
     <tr><td colspan="2" id="cater"></td></tr>
     <tr><td>Complete by</td><td><input type="date" name="comBy"> </td></tr>
     <tr><td colspan="2"><input type="submit" value="Update list" ><input type="button" onclick="cancel()" value="Cancel"></td></tr>
@@ -44,7 +44,7 @@
   <ol id="editList">
   </ol>
 
-  <input id="editShow" type="button" value="Edit Item catergory" onclick="change(this); return false;">
+  <input id="editShow" type="button" value="Edit Item category" onclick="change(this); return false;">
   <input id="editSubmit" class="hidden" type="submit" value="Submit change" >
   <input type="button" onclick="cancel()" value="Cancel">
   <input type="hidden" name="goback" id="editgoback">
@@ -74,7 +74,7 @@
             item.setAttribute("value", i + 1);
 
             if (i < database.todo.length - 1) {
-              if (database.todo[i].catergory < database.todo[i + 1].catergory) { 
+              if (database.todo[i].category < database.todo[i + 1].category) { 
 
                 appItem(database.todo[i], item, list);
                 var br = document.createElement('br');
@@ -177,7 +177,7 @@
         // add a new input
         var form = document.createElement('div');
         form.setAttribute('style', 'padding-left:30px;')
-        form.innerHTML = "New catergory <input type='number' id='npl' name='catergory' min='1' max='3'>";
+        form.innerHTML = "New category <input type='number' id='npl' name='category' min='1' max='3'>";
         ele[i].after(form);
         // add the label back
         var lab = document.createElement('label');
@@ -219,9 +219,9 @@
     list.appendChild(item);
   }
 
-  function showCatergory(item) {
-    var catergory = ['bed', 'breakfast', 'lunch', 'dinner'];
-    document.getElementById('cater').innerHTML = catergory[item.value - 1];
+  function showCategory(item) {
+    var category = ['bed', 'breakfast', 'lunch', 'dinner'];
+    document.getElementById('cater').innerHTML = category[item.value - 1];
   }
 </script>
 
